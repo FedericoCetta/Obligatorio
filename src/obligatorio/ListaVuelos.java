@@ -45,7 +45,7 @@ public class ListaVuelos implements IListaVuelos {
     }
 
     @Override
-    public void insertarInicio(int nVuelo, String aereolinea, String ciudadOrigen, String ciudadDestino, int estrellas, int capacidad, Calendar FechayHoraSalida, int duracion) {
+    public void insertarInicio(int nVuelo, String aereolinea, String ciudadOrigen, String ciudadDestino, int estrellas, int capacidad, String FechayHoraSalida, int duracion) {
         NodoListaVuelos nuevo= new NodoListaVuelos( nVuelo, aereolinea, ciudadOrigen, ciudadDestino,  estrellas,  capacidad,  FechayHoraSalida,  duracion);
         nuevo.setSiguiente(this.getInicio());
         this.setInicio(nuevo);
@@ -65,7 +65,7 @@ public class ListaVuelos implements IListaVuelos {
     }
 
     @Override
-    public void agregarFinal(int nVuelo, String aereolinea, String ciudadOrigen, String ciudadDestino, int estrellas, int capacidad, Calendar FechayHoraSalida, int duracion) {
+    public void agregarFinal(int nVuelo, String aereolinea, String ciudadOrigen, String ciudadDestino, int estrellas, int capacidad, String FechayHoraSalida, int duracion) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -96,7 +96,7 @@ public class ListaVuelos implements IListaVuelos {
     }
 
     @Override
-    public void agregarOrd(int nVuelo, String aereolinea, String ciudadOrigen, String ciudadDestino, int estrellas, int capacidad, Calendar FechayHoraSalida, int duracion) {
+    public void agregarOrd(int nVuelo, String aereolinea, String ciudadOrigen, String ciudadDestino, int estrellas, int capacidad, String FechayHoraSalida, int duracion) {
         NodoListaVuelos  nuevo = new NodoListaVuelos( nVuelo, aereolinea, ciudadOrigen, ciudadDestino,  estrellas,  capacidad,  FechayHoraSalida,  duracion);
              NodoListaVuelos aux = this.getInicio(); 
                 

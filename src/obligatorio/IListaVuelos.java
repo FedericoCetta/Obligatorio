@@ -13,13 +13,13 @@ import java.util.Calendar;
  */
 public interface IListaVuelos {
     public boolean esVacia();
-    public void insertarInicio(int nVuelo, String aereolinea, String ciudadOrigen, String ciudadDestino, int estrellas, int capacidad, Calendar FechayHoraSalida, int duracion);
+    public void insertarInicio(int nVuelo, String aereolinea, String ciudadOrigen, String ciudadDestino, int estrellas, int capacidad, String FechayHoraSalida, int duracion);
     public void borrarInicio();
-    public void agregarFinal(int nVuelo, String aereolinea, String ciudadOrigen, String ciudadDestino, int estrellas, int capacidad, Calendar FechayHoraSalida, int duracion);
+    public void agregarFinal(int nVuelo, String aereolinea, String ciudadOrigen, String ciudadDestino, int estrellas, int capacidad, String FechayHoraSalida, int duracion);
     public void borrarFin();
     public void vaciar();
     public void mostrar();
-    public void agregarOrd(int nVuelo, String aereolinea, String ciudadOrigen, String ciudadDestino, int estrellas, int capacidad, Calendar FechayHoraSalida, int duracion);
+    public void agregarOrd(int nVuelo, String aereolinea, String ciudadOrigen, String ciudadDestino, int estrellas, int capacidad, String FechayHoraSalida, int duracion);
     public NodoListaVuelos obtenerVuelo(int numeroVuelo);
        public NodoListaVuelos obtenerCiudadyDestino(String ciudadOrigen, String ciudadDestino);
     
