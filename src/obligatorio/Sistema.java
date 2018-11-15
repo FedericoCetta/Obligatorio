@@ -141,6 +141,7 @@ public class Sistema implements ISistema {
                     
                 }
         }
+             return new Retorno(Resultado.NO_IMPLEMENTADA);
     }
 
     @Override

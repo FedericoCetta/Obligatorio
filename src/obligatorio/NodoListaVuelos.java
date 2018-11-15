@@ -27,6 +27,7 @@ public class NodoListaVuelos {
         ListaServicios LServicios;
         ListaReservas  LReservas;
         ColaEspera    LEspera;//cola
+        ListaComentarios LComentarios;
         
         
     public NodoListaVuelos(int nVuelo, String aereolinea, String ciudadOrigen, String ciudadDestino, int estrellas, int capacidad, Calendar FechayHoraSalida, int duracion) {
@@ -42,6 +43,7 @@ public class NodoListaVuelos {
         this.LServicios = new ListaServicios();
         this.LEspera= new ColaEspera(10);
         this.LReservas = new ListaReservas();
+        this.LComentarios = new ListaComentarios();
     }
 
     public int getnVuelo() {
