@@ -116,4 +116,18 @@ public class ListaServicios implements IListaServicios{
         //encontrÃ© dato o lleguÃ© al final
         return aux; 
     }
+
+    @Override
+    public void borrarelemento(String aerolinea, int numeroVuelo) {
+            NodoListaServicios aux= this.getInicio();
+            NodoListaServicios anterior = this.getFin();
+            
+            while (aux!=null && aux.getAerolinea() != aerolinea && aux.getNumeroVuelo() != numeroVuelo){
+                anterior=aux;
+                aux=aux.getSiguiente();
+            }
+            if (aux!=null)
+                anterior.setSiguiente(aux.getSiguiente());
+
+    }
 }
