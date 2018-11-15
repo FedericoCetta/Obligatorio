@@ -35,9 +35,11 @@ public class Sistema implements ISistema {
          
     }
     public void registarAereolinea(String aereolinea){
-        if(listaAereolinea.esVacia() || listaAereolinea.obtenerAereolinea(aereolinea).toString() != aereolinea){
+        NodoListaAereolinea aux = listaAereolinea.obtenerAereolinea(aereolinea);
+        if(listaAereolinea.esVacia()|| aux == null){
             listaAereolinea.insertarInicio(aereolinea);
         }
+      
        
     
     }
