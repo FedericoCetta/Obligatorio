@@ -13,19 +13,41 @@ import obligatorio.Retorno.Resultado;
  * @author Usuario
  */
 public class Sistema implements ISistema {
-
+        ListaAereolinea listaAereolinea;  
+        int [][] mapa;
+        
+        
     @Override
     public Retorno crearSistemaReservas() {
-        return new Retorno(Resultado.NO_IMPLEMENTADA);
+            listaAereolinea = new ListaAereolinea();
+             mapa = new int[5][5];
+  
+      
+           
+        return new Retorno(Retorno.Resultado.OK);   
     }
 
     @Override
     public Retorno destruirSistemaReservas() {
-        return new Retorno(Resultado.NO_IMPLEMENTADA);
+            listaAereolinea.vaciar();
+            
+            return new Retorno(Resultado.OK);
+         
     }
-
+    public void registarAereolinea(String aereolinea){
+        if(listaAereolinea.esVacia() || listaAereolinea.obtenerAereolinea(aereolinea).toString() != aereolinea){
+            listaAereolinea.insertarInicio(aereolinea);
+        }
+       
+    
+    }
+    
     @Override
     public Retorno registrarVuelo(int numero, String aerolinea, String ciudadOrigen, String ciudadDestino, int estrellas, int capacidad, Calendar fechaHoraSalida, int duracion) {
+            ListaVuelos auxAereo=  listaAereolinea.getInicio().LVuelosAereolinea;
+            if(auxAereo.esVacia()){
+                auxAereo.insertarInicio(numero, aerolinea, ciudadOrigen, ciudadDestino, estrellas, capacidad, fechaHoraSalida, duracion);
+            }
         return new Retorno(Resultado.NO_IMPLEMENTADA);
     }
 
