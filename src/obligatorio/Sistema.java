@@ -107,12 +107,40 @@ public class Sistema implements ISistema {
 
     @Override
     public Retorno borrarServicio(String aerolinea, int numero, String servicio) {
-        return new Retorno(Resultado.NO_IMPLEMENTADA);
+      NodoListaAereolinea AuxAerolinea = listaAereolinea.obtenerAereolinea(aerolinea);
+          if (AuxAerolinea.equals(aerolinea)) {
+            NodoListaVuelos auxVuelo=  AuxAerolinea.LVuelosAereolinea.obtenerVuelo(numero);
+                if (auxVuelo != null) {
+                    
+                    if (auxVuelo.LServicios.obtenerServicioPorNombre(servicio) != null) {
+                      auxVuelo.LServicios.borrarInicio();
+                     return new Retorno(Resultado.OK);
+                    }
+                    else
+                        return new Retorno(Resultado.ERROR_2);
+                   
+                    
+                }
+                else{
+                    return new Retorno (Resultado.ERROR_1);
+                }
+                                      
+                }
+           return new Retorno(Resultado.ERROR_1);       
     }
 
     @Override
     public Retorno ingresarComentario(String aerolinea, int numero, String comentario, int ranking) {
-        return new Retorno(Resultado.NO_IMPLEMENTADA);
+        NodoListaAereolinea auxAerolinea = listaAereolinea.obtenerAereolinea(aerolinea);
+        
+            if (auxAerolinea.equals(aerolinea)) {
+                NodoListaVuelos auxVuelo = auxAerolinea.LVuelosAereolinea.obtenerVuelo(numero);
+                
+                if (auxVuelo!=null) {
+                //    NodoListaComentarios auxcomentarios = auxVuelo.
+                    
+                }
+        }
     }
 
     @Override

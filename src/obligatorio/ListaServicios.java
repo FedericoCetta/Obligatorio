@@ -130,4 +130,12 @@ public class ListaServicios implements IListaServicios{
                 anterior.setSiguiente(aux.getSiguiente());
 
     }
+
+    @Override
+    public NodoListaServicios obtenerServicioPorNombre(String nomservicio) {
+   NodoListaServicios aux=this.inicio;
+        while (aux!=null && aux.getServicio()!=nomservicio)
+                aux=aux.getSiguiente();
+        //encontrÃ© dato o lleguÃ© al final
+        return aux;     }
 }

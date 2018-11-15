@@ -20,4 +20,5 @@ public interface IListaServicios {
     public void agregarOrd(String aerolinea, int numeroVuelo, String servicio);
     public NodoListaServicios obtenerServicioDelVuelo( int numeroVuelo);
     public void borrarelemento(String aerolinea, int numeroVuelo);
+     public NodoListaServicios obtenerServicioPorNombre( String nomservicio);
 }
