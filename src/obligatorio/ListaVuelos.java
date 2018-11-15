@@ -7,6 +7,7 @@ package obligatorio;
 
 import java.util.Calendar;
 
+
 /**
  *
  * @author Usuario
@@ -14,8 +15,7 @@ import java.util.Calendar;
 public class ListaVuelos implements IListaVuelos {
      private NodoListaVuelos inicio;
      private NodoListaVuelos fin;
-    
-    
+
         public void ListaVuelos(){
         this.inicio=null;
         this.fin=null;
