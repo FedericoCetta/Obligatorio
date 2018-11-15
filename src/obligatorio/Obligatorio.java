@@ -27,10 +27,10 @@ public class Obligatorio {
  
 public static void prueba1(Prueba p, Sistema s, int [][] mapa)   { 
    
-    p.ver(s.crearSistemaReservas().resultado, Retorno.Resultado.OK, "SE CREO LISTA DE SISTEMASA");
-   s.registarAereolinea("Latam");
+    p.ver(s.crearSistemaReservas().resultado, Retorno.Resultado.OK, "SE CREO LISTA DE SISTEMA");
+  
    s.registarAereolinea("CopaAir");
-   s.registarAereolinea("American");
+ 
     p.ver(s.registrarVuelo(285, "CopaAir", "MVD", "PTY", 2, 145, "12/12/2018" , 6).resultado, Retorno.Resultado.OK, "Se ingreso el vuelo 285");
         p.imprimirResultadosPrueba();
 

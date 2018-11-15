@@ -45,9 +45,9 @@ public class Sistema implements ISistema {
     @Override
     public Retorno registrarVuelo(int numero, String aerolinea, String ciudadOrigen, String ciudadDestino, int estrellas, int capacidad, String fechaHoraSalida, int duracion) {
                 NodoListaAereolinea aux = listaAereolinea.obtenerAereolinea(aerolinea);
-            if(aux.equals(aerolinea)){
+            if(aux.getNombreAereolinea().toString() == aerolinea){
                
-                if(estrellas < 1 || estrellas > 5){
+                if(estrellas >= 1 || estrellas <=5){
                 
                      if(capacidad > 0 && duracion > 0){
                  ListaVuelos auxVuelo=  aux.LVuelosAereolinea;
@@ -79,13 +79,9 @@ public class Sistema implements ISistema {
              }
                 else
                  return new Retorno(Resultado.ERROR_1);    
-        
-         
-                
-                
             }
         
-        return new Retorno(Resultado.NO_IMPLEMENTADA);
+            return new Retorno(Resultado.ERROR_4); 
     }
 
     @Override
