@@ -125,5 +125,14 @@ public class ListaVuelos implements IListaVuelos {
         //encontrÃ© dato o lleguÃ© al final
         return aux;  
     }
+
+    @Override
+    public NodoListaVuelos obtenerCiudadyDestino(String ciudadOrigen, String ciudadDestino) {
+         NodoListaVuelos aux=this.inicio;
+        while (aux!=null && aux.getCiudadOrigen() != ciudadOrigen && aux.getCiudadDestino() !=ciudadDestino)
+            aux=aux.getSiguiente();
+        //encontrÃ© dato o lleguÃ© al final
+        return aux;  
+    }
     
 }
