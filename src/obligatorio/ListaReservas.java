@@ -34,7 +34,7 @@ public class ListaReservas implements IListaReservas{
     public void setFin(NodoListaReservas fin) {
         this.fin = fin;
     }
-
+//sdsds
     
     @Override
     public boolean esVacia() {
