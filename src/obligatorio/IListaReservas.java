@@ -20,6 +20,6 @@ public interface IListaReservas {
     public void vaciar();
     public void mostrar();
     public void agregarOrd(int cliente, int nVuelo, String aereolinea);
-    public NodoListaVuelos obtenerReserva(int numeroVuelo,int cliente);
+    public NodoListaReservas obtenerReserva(int numeroVuelo,int cliente);
     
 }
