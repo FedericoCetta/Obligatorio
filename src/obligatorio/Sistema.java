@@ -138,8 +138,18 @@ public class Sistema implements ISistema {
                 NodoListaVuelos auxVuelo = auxAerolinea.LVuelosAereolinea.obtenerVuelo(numero);
                 
                 if (auxVuelo!=null) {
-                //    NodoListaComentarios auxcomentarios = auxVuelo.
                     
+                    if (ranking >0 || ranking <=5 ) {
+                         auxVuelo.LComentarios.agregarInicio(aerolinea, numero, comentario, ranking);
+                         return new Retorno(Resultado.OK);
+                    }
+                    else {
+                        return new Retorno(Resultado.ERROR_1);
+                        }
+                }
+                else
+                {
+                    return new Retorno(Resultado.ERROR_2);
                 }
         }
              return new Retorno(Resultado.NO_IMPLEMENTADA);
@@ -147,6 +157,19 @@ public class Sistema implements ISistema {
 
     @Override
     public Retorno realizarReserva(int cliente, int numero, String aerolinea) {
+        NodoListaAereolinea auxAerolinea = listaAereolinea.obtenerAereolinea(aerolinea);
+        
+            if (auxAerolinea.equals(aerolinea))
+            {
+                NodoListaVuelos auxVuelo = auxAerolinea.LVuelosAereolinea.obtenerVuelo(numero);
+                if (auxVuelo!=null)
+                {
+                    if (auxVuelo.getCapacidad()>0) {
+                        
+                    }
+                }
+                
+            }
         return new Retorno(Resultado.NO_IMPLEMENTADA);
     }
 
