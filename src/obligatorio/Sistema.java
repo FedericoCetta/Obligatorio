@@ -165,11 +165,16 @@ public class Sistema implements ISistema {
                 {
                     if (auxVuelo.getCapacidad()>0) {
                         
+                        
+                    }
+                    else
+                    {
+                       // auxVuelo.LEspera.
                     }
                 }
                 
             }
-        
+        return new Retorno(Resultado.NO_IMPLEMENTADA);
     }
 
     @Override
