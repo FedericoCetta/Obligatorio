@@ -21,8 +21,6 @@ public class Sistema implements ISistema {
     public Retorno crearSistemaReservas() {
             listaAereolinea = new ListaAereolinea();
              mapa = new int[5][5];
-  
-      
            
         return new Retorno(Retorno.Resultado.OK);   
     }
@@ -47,36 +45,38 @@ public class Sistema implements ISistema {
     @Override
     public Retorno registrarVuelo(int numero, String aerolinea, String ciudadOrigen, String ciudadDestino, int estrellas, int capacidad, String fechaHoraSalida, int duracion) {
                 NodoListaAereolinea aux = listaAereolinea.obtenerAereolinea(aerolinea);
-            if(aux.getNombreAereolinea().toString() == aerolinea){
+            if(listaAereolinea.existeAerolina(aerolinea))
+            {
                
-                if(estrellas >= 1 && estrellas <=5){
+                if(estrellas >= 1 && estrellas <=5)
+                {
                 
-                     if(capacidad > 0 && duracion > 0){
-                 ListaVuelos auxVuelo=  aux.LVuelosAereolinea;
-                 
-            if(auxVuelo.esVacia()){
-                
-                auxVuelo.insertarInicio(numero, aerolinea, ciudadOrigen, ciudadDestino, estrellas, capacidad, fechaHoraSalida, duracion);
-                return new Retorno(Resultado.OK);
-            }
-            else if(auxVuelo.obtenerVuelo(numero) != null){
-                    if(auxVuelo.obtenerCiudadyDestino(ciudadOrigen, ciudadDestino) == null){
-                     auxVuelo.insertarInicio(numero, aerolinea, ciudadOrigen, ciudadDestino, estrellas, capacidad, fechaHoraSalida, duracion);
-                return new Retorno(Resultado.OK);
-                    }
+                            if(capacidad > 0 && duracion > 0)
+                            {
+                             ListaVuelos auxVuelo=  aux.LVuelosAereolinea;
+
+                                            if(auxVuelo.esVacia())
+                                            {
+                                                 auxVuelo.insertarInicio(numero, aerolinea, ciudadOrigen, ciudadDestino, estrellas, capacidad, fechaHoraSalida, duracion);
+                                                 return new Retorno(Resultado.OK);
+                                             }
+                                             else if(auxVuelo.obtenerVuelo(numero) == null)
+                                             {
+                                                    if(ciudadOrigen !=ciudadDestino)
+                                                    {
+                                                         auxVuelo.insertarInicio(numero, aerolinea, ciudadOrigen, ciudadDestino, estrellas, capacidad, fechaHoraSalida, duracion);
+                                                         return new Retorno(Resultado.OK);
+                                                    }
+                                                    else
+                                                        return new Retorno(Resultado.ERROR_4); 
+
+                                             }else
+                                              return new Retorno(Resultado.ERROR_3); 
+
+
+                          }
                     else
-                        return new Retorno(Resultado.ERROR_4); 
-               
-            }else
-                 return new Retorno(Resultado.ERROR_3); 
-          
-            
-            
-            
-            
-            }
-             else
-                 return new Retorno(Resultado.ERROR_2); 
+                        return new Retorno(Resultado.ERROR_2); 
          
              }
                 else
@@ -210,6 +210,8 @@ public class Sistema implements ISistema {
           return new Retorno(Resultado.ERROR_1);
         
     }
+    
+    //prueba commit
 
     @Override
     public Retorno listarServicios(String numero, String aerolinea) {
