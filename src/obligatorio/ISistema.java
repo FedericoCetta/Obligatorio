@@ -14,7 +14,7 @@ import java.util.Calendar;
 public interface ISistema {
      Retorno crearSistemaReservas();
  Retorno destruirSistemaReservas();
- Retorno registrarVuelo(int numero, String aerolinea, String ciudadOrigen, String ciudadDestino, int estrellas, int capacidad, Calendar fechaHoraSalida, int duracion);
+ Retorno registrarVuelo(int numero, String aerolinea, String ciudadOrigen, String ciudadDestino, int estrellas, int capacidad, String fechaHoraSalida, int duracion);
  Retorno ingresarServicio(String aerolinea, int numero, String servicio);
  Retorno borrarServicio(String aerolinea, int numero, String servicio); 
  Retorno ingresarComentario(String aerolinea, int numero, String comentario, int ranking);

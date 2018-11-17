@@ -19,7 +19,7 @@ public class NodoListaVuelos {
         String ciudadDestino;
         int estrellas;
         int capacidad;
-        Calendar FechayHoraSalida;
+        String FechayHoraSalida;
         int duracion;
 	private NodoListaVuelos siguiente;
         
@@ -27,9 +27,10 @@ public class NodoListaVuelos {
         ListaServicios LServicios;
         ListaReservas  LReservas;
         ColaEspera    LEspera;//cola
+        ListaComentarios LComentarios;
         
         
-    public NodoListaVuelos(int nVuelo, String aereolinea, String ciudadOrigen, String ciudadDestino, int estrellas, int capacidad, Calendar FechayHoraSalida, int duracion) {
+    public NodoListaVuelos(int nVuelo, String aereolinea, String ciudadOrigen, String ciudadDestino, int estrellas, int capacidad, String FechayHoraSalida, int duracion) {
         this.nVuelo = nVuelo;
         this.aereolinea = aereolinea;
         this.ciudadOrigen = ciudadOrigen;
@@ -42,6 +43,7 @@ public class NodoListaVuelos {
         this.LServicios = new ListaServicios();
         this.LEspera= new ColaEspera(10);
         this.LReservas = new ListaReservas();
+        this.LComentarios = new ListaComentarios();
     }
 
     public int getnVuelo() {
@@ -92,11 +94,11 @@ public class NodoListaVuelos {
         this.capacidad = capacidad;
     }
 
-    public Calendar getFechayHoraSalida() {
+    public String getFechayHoraSalida() {
         return FechayHoraSalida;
     }
 
-    public void setFechayHoraSalida(Calendar FechayHoraSalida) {
+    public void setFechayHoraSalida(String FechayHoraSalida) {
         this.FechayHoraSalida = FechayHoraSalida;
     }
 

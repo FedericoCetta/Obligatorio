@@ -13,39 +13,166 @@ import obligatorio.Retorno.Resultado;
  * @author Usuario
  */
 public class Sistema implements ISistema {
-
+        ListaAereolinea listaAereolinea;  
+        int [][] mapa;
+        
+        
     @Override
     public Retorno crearSistemaReservas() {
-        return new Retorno(Resultado.NO_IMPLEMENTADA);
+            listaAereolinea = new ListaAereolinea();
+             mapa = new int[5][5];
+  
+      
+           
+        return new Retorno(Retorno.Resultado.OK);   
     }
 
     @Override
     public Retorno destruirSistemaReservas() {
-        return new Retorno(Resultado.NO_IMPLEMENTADA);
+            listaAereolinea.vaciar();
+            
+            return new Retorno(Resultado.OK);
+         
     }
-
+    public void registarAereolinea(String aereolinea){
+        NodoListaAereolinea aux = listaAereolinea.obtenerAereolinea(aereolinea);
+        if(listaAereolinea.esVacia()|| aux == null){
+            listaAereolinea.insertarInicio(aereolinea);
+        }
+      
+       
+    
+    }
+    
     @Override
-    public Retorno registrarVuelo(int numero, String aerolinea, String ciudadOrigen, String ciudadDestino, int estrellas, int capacidad, Calendar fechaHoraSalida, int duracion) {
-        return new Retorno(Resultado.NO_IMPLEMENTADA);
+    public Retorno registrarVuelo(int numero, String aerolinea, String ciudadOrigen, String ciudadDestino, int estrellas, int capacidad, String fechaHoraSalida, int duracion) {
+                NodoListaAereolinea aux = listaAereolinea.obtenerAereolinea(aerolinea);
+            if(aux.getNombreAereolinea().toString() == aerolinea){
+               
+                if(estrellas >= 1 || estrellas <=5){
+                
+                     if(capacidad > 0 && duracion > 0){
+                 ListaVuelos auxVuelo=  aux.LVuelosAereolinea;
+                 
+            if(auxVuelo.esVacia()){
+                
+                auxVuelo.insertarInicio(numero, aerolinea, ciudadOrigen, ciudadDestino, estrellas, capacidad, fechaHoraSalida, duracion);
+                return new Retorno(Resultado.OK);
+            }
+            else if(auxVuelo.obtenerVuelo(numero) != null){
+                    if(auxVuelo.obtenerCiudadyDestino(ciudadOrigen, ciudadDestino) == null){
+                     auxVuelo.insertarInicio(numero, aerolinea, ciudadOrigen, ciudadDestino, estrellas, capacidad, fechaHoraSalida, duracion);
+                return new Retorno(Resultado.OK);
+                    }
+                    else
+                        return new Retorno(Resultado.ERROR_4); 
+               
+            }else
+                 return new Retorno(Resultado.ERROR_3); 
+          
+            
+            
+            
+            
+            }
+             else
+                 return new Retorno(Resultado.ERROR_2); 
+         
+             }
+                else
+                 return new Retorno(Resultado.ERROR_1);    
+            }
+        
+            return new Retorno(Resultado.ERROR_4); 
     }
 
     @Override
     public Retorno ingresarServicio(String aerolinea, int numero, String servicio) {
-        return new Retorno(Resultado.NO_IMPLEMENTADA);
+            NodoListaAereolinea auxAereo = listaAereolinea.obtenerAereolinea(aerolinea);
+            if(auxAereo.equals(aerolinea)){
+                 NodoListaVuelos auxVuelo=  auxAereo.LVuelosAereolinea.obtenerVuelo(numero);
+                 if(auxVuelo != null){
+                   auxVuelo.LServicios.insertarInicio(aerolinea, numero, servicio);
+                   return new Retorno(Resultado.OK);  
+                 }
+                 else
+                   return new Retorno(Resultado.ERROR_1);   
+                
+            }
+            return new Retorno(Resultado.ERROR_1);
+            
+        
     }
 
     @Override
     public Retorno borrarServicio(String aerolinea, int numero, String servicio) {
-        return new Retorno(Resultado.NO_IMPLEMENTADA);
+      NodoListaAereolinea AuxAerolinea = listaAereolinea.obtenerAereolinea(aerolinea);
+          if (AuxAerolinea.equals(aerolinea)) {
+            NodoListaVuelos auxVuelo=  AuxAerolinea.LVuelosAereolinea.obtenerVuelo(numero);
+                if (auxVuelo != null) {
+                    
+                    if (auxVuelo.LServicios.obtenerServicioPorNombre(servicio) != null) {
+                      auxVuelo.LServicios.borrarInicio();
+                     return new Retorno(Resultado.OK);
+                    }
+                    else
+                        return new Retorno(Resultado.ERROR_2);
+                   
+                    
+                }
+                else{
+                    return new Retorno (Resultado.ERROR_1);
+                }
+                                      
+                }
+           return new Retorno(Resultado.ERROR_1);       
     }
 
     @Override
     public Retorno ingresarComentario(String aerolinea, int numero, String comentario, int ranking) {
-        return new Retorno(Resultado.NO_IMPLEMENTADA);
+        NodoListaAereolinea auxAerolinea = listaAereolinea.obtenerAereolinea(aerolinea);
+        
+            if (auxAerolinea.equals(aerolinea)) {
+                NodoListaVuelos auxVuelo = auxAerolinea.LVuelosAereolinea.obtenerVuelo(numero);
+                
+                if (auxVuelo!=null) {
+                    
+                    if (ranking >0 || ranking <=5 ) {
+                         auxVuelo.LComentarios.agregarInicio(aerolinea, numero, comentario, ranking);
+                         return new Retorno(Resultado.OK);
+                    }
+                    else {
+                        return new Retorno(Resultado.ERROR_1);
+                        }
+                }
+                else
+                {
+                    return new Retorno(Resultado.ERROR_2);
+                }
+        }
+             return new Retorno(Resultado.NO_IMPLEMENTADA);
     }
 
     @Override
     public Retorno realizarReserva(int cliente, int numero, String aerolinea) {
+        NodoListaAereolinea auxAerolinea = listaAereolinea.obtenerAereolinea(aerolinea);
+        
+            if (auxAerolinea.equals(aerolinea))
+            {
+                NodoListaVuelos auxVuelo = auxAerolinea.LVuelosAereolinea.obtenerVuelo(numero);
+                if (auxVuelo!=null)
+                {
+                    if (auxVuelo.getCapacidad()>0) {
+                        
+                        
+                    }
+                    else
+                    {
+                       // auxVuelo.LEspera.
+                    }
+                }
+                
+            }
         return new Retorno(Resultado.NO_IMPLEMENTADA);
     }
 

@@ -18,5 +18,5 @@ public interface IListaComentarios {
     public void vaciar();
     public void mostrar();
     public void agregarOrd(String aerolinea, int numero, String comentario, int ranking);
-    public NodoListaVuelos obtenerComentario(int numeroVuelo,int cliente);
+    public NodoListaComentarios obtenerComentario(int numeroVuelo);
 }

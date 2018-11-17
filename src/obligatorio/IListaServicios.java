@@ -11,12 +11,14 @@ package obligatorio;
  */
 public interface IListaServicios {
      public boolean esVacia();
-    public void agregarInicio(String aerolinea, int numeroVuelo, String servicio);
+    public void insertarInicio(String aerolinea, int numeroVuelo, String servicio);
     public void borrarInicio();
-    public void agregarFinal(String aerolinea, int numeroVuelo, String servicio);
+    public void insertarFinal(String aerolinea, int numeroVuelo, String servicio);
     public void borrarFin();
     public void vaciar();
     public void mostrar();
     public void agregarOrd(String aerolinea, int numeroVuelo, String servicio);
-    public NodoListaServicios obtenerServicioDelVuelo(String aerolinea, int numeroVuelo, String servicio);
+    public NodoListaServicios obtenerServicioDelVuelo( int numeroVuelo);
+    public void borrarelemento(String aerolinea, int numeroVuelo);
+     public NodoListaServicios obtenerServicioPorNombre( String nomservicio);
 }

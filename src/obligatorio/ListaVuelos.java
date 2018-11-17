@@ -7,6 +7,7 @@ package obligatorio;
 
 import java.util.Calendar;
 
+
 /**
  *
  * @author Usuario
@@ -14,8 +15,7 @@ import java.util.Calendar;
 public class ListaVuelos implements IListaVuelos {
      private NodoListaVuelos inicio;
      private NodoListaVuelos fin;
-    
-    
+
         public void ListaVuelos(){
         this.inicio=null;
         this.fin=null;
@@ -45,7 +45,7 @@ public class ListaVuelos implements IListaVuelos {
     }
 
     @Override
-    public void insertarInicio(int nVuelo, String aereolinea, String ciudadOrigen, String ciudadDestino, int estrellas, int capacidad, Calendar FechayHoraSalida, int duracion) {
+    public void insertarInicio(int nVuelo, String aereolinea, String ciudadOrigen, String ciudadDestino, int estrellas, int capacidad, String FechayHoraSalida, int duracion) {
         NodoListaVuelos nuevo= new NodoListaVuelos( nVuelo, aereolinea, ciudadOrigen, ciudadDestino,  estrellas,  capacidad,  FechayHoraSalida,  duracion);
         nuevo.setSiguiente(this.getInicio());
         this.setInicio(nuevo);
@@ -65,7 +65,7 @@ public class ListaVuelos implements IListaVuelos {
     }
 
     @Override
-    public void agregarFinal(int nVuelo, String aereolinea, String ciudadOrigen, String ciudadDestino, int estrellas, int capacidad, Calendar FechayHoraSalida, int duracion) {
+    public void agregarFinal(int nVuelo, String aereolinea, String ciudadOrigen, String ciudadDestino, int estrellas, int capacidad, String FechayHoraSalida, int duracion) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -96,7 +96,7 @@ public class ListaVuelos implements IListaVuelos {
     }
 
     @Override
-    public void agregarOrd(int nVuelo, String aereolinea, String ciudadOrigen, String ciudadDestino, int estrellas, int capacidad, Calendar FechayHoraSalida, int duracion) {
+    public void agregarOrd(int nVuelo, String aereolinea, String ciudadOrigen, String ciudadDestino, int estrellas, int capacidad, String FechayHoraSalida, int duracion) {
         NodoListaVuelos  nuevo = new NodoListaVuelos( nVuelo, aereolinea, ciudadOrigen, ciudadDestino,  estrellas,  capacidad,  FechayHoraSalida,  duracion);
              NodoListaVuelos aux = this.getInicio(); 
                 
@@ -121,6 +121,15 @@ public class ListaVuelos implements IListaVuelos {
     public NodoListaVuelos obtenerVuelo(int numeroVuelo) {
           NodoListaVuelos aux=this.inicio;
         while (aux!=null && aux.getnVuelo()!=numeroVuelo)
+            aux=aux.getSiguiente();
+        //encontrÃ© dato o lleguÃ© al final
+        return aux;  
+    }
+
+    @Override
+    public NodoListaVuelos obtenerCiudadyDestino(String ciudadOrigen, String ciudadDestino) {
+         NodoListaVuelos aux=this.inicio;
+        while (aux!=null && aux.getCiudadOrigen() != ciudadOrigen && aux.getCiudadDestino() !=ciudadDestino)
             aux=aux.getSiguiente();
         //encontrÃ© dato o lleguÃ© al final
         return aux;  

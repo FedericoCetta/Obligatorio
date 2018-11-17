@@ -1,6 +1,9 @@
 
 package obligatorio;
 
+import java.util.Calendar;
+import java.util.Locale;
+
 
 public class Obligatorio {
 
@@ -20,18 +23,28 @@ public class Obligatorio {
 
     }
     
+ 
+ 
 public static void prueba1(Prueba p, Sistema s, int [][] mapa)   { 
    
-    p.ver(s.crearSistemaReservas().resultado, Retorno.Resultado.OK, "SE CREO LISTA DE SISTEMASA");
-    p.ver(s.Caminomascorto(0, 4, mapa).resultado, Retorno.Resultado.OK, s.Caminomascorto(0, 4, mapa).valorString);
-    p.ver(s.destruirSistemaReservas().resultado, Retorno.Resultado.OK, "Se cerro el sistema");
-        p.imprimirResultadosPrueba();
+    p.ver(s.crearSistemaReservas().resultado, Retorno.Resultado.OK, "SE CREO LISTA DE SISTEMA");
+    s.registarAereolinea("CopaAir");
+     s.registarAereolinea("Latam");
+     s.registarAereolinea("CopaAir");
+     s.registarAereolinea("American-Airlines");
+     
+    p.ver(s.registrarVuelo(285, "CopaAir", "MVD", "PTY", 2, 145, "12/12/2018" , 6).resultado, Retorno.Resultado.OK, "Se ingreso el vuelo 285");
+    s.listaAereolinea.mostrar();
+    p.imprimirResultadosPrueba();
+
         
         //prueba
         
 }    
 public static void prueba2(Prueba p, Sistema s, int [][] mapa)   { 
         p.ver(s.Caminomascorto(0, 4, mapa).resultado, Retorno.Resultado.OK, "distancia mas corata");
+         p.ver(s.Caminomascorto(0, 4, mapa).resultado, Retorno.Resultado.OK, s.Caminomascorto(0, 4, mapa).valorString);
+        p.ver(s.destruirSistemaReservas().resultado, Retorno.Resultado.OK, "Se cerro el sistema");
         p.imprimirResultadosPrueba();
 }    
 
