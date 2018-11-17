@@ -130,10 +130,29 @@ public class ListaAereolinea implements IListaAereolinea {
     @Override
     public NodoListaAereolinea obtenerAereolinea(String Aereolinea) {
      NodoListaAereolinea aux=this.inicio;
-        while (aux!=null && aux.getNombreAereolinea()!=Aereolinea)
+        while (aux!=null && aux.getNombreAereolinea().compareTo(Aereolinea) != 0) 
             aux=aux.getSiguiente();
         //encontrÃ© dato o lleguÃ© al final
         return aux;
+    }
+
+    @Override
+    public boolean existeAerolina(String Aerolinea) {
+          NodoListaAereolinea aux=this.inicio;
+          boolean existe = false;
+          
+          while(aux != null && !existe)
+               {
+                   if (aux.getNombreAereolinea().compareTo(Aerolinea) == 0) 
+                   {
+                       existe = true;
+                   }
+                   else
+                       existe = false;
+               }
+          
+          return existe;
+
     }
     
     

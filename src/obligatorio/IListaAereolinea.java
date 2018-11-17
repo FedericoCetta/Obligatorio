@@ -20,4 +20,6 @@ public interface IListaAereolinea {
     public void mostrar();
     public void agregarOrd(String Aereolinea);
     public NodoListaAereolinea obtenerAereolinea(String Aereolinea);
+    public boolean existeAerolina (String Aerolinea);
+    
 }

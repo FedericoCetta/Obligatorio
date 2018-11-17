@@ -49,7 +49,7 @@ public class Sistema implements ISistema {
                 NodoListaAereolinea aux = listaAereolinea.obtenerAereolinea(aerolinea);
             if(aux.getNombreAereolinea().toString() == aerolinea){
                
-                if(estrellas >= 1 || estrellas <=5){
+                if(estrellas >= 1 && estrellas <=5){
                 
                      if(capacidad > 0 && duracion > 0){
                  ListaVuelos auxVuelo=  aux.LVuelosAereolinea;
@@ -137,7 +137,7 @@ public class Sistema implements ISistema {
                 
                 if (auxVuelo!=null) {
                     
-                    if (ranking >0 || ranking <=5 ) {
+                    if (ranking >0 && ranking <=5 ) {
                          auxVuelo.LComentarios.agregarInicio(aerolinea, numero, comentario, ranking);
                          return new Retorno(Resultado.OK);
                     }
@@ -164,21 +164,51 @@ public class Sistema implements ISistema {
                 {
                     if (auxVuelo.getCapacidad()>0) {
                         
-                        
+                        auxVuelo.LReservas.InsertarInicio(cliente, numero, aerolinea);
+                        return new Retorno(Resultado.OK);
                     }
                     else
                     {
-                       // auxVuelo.LEspera.
+                       auxVuelo.LEspera.encolar(cliente, numero, aerolinea);
+                        return new Retorno(Resultado.OK);
                     }
                 }
+                else
+                     return new Retorno(Resultado.OK);
                 
             }
-        return new Retorno(Resultado.NO_IMPLEMENTADA);
+        return new Retorno(Resultado.ERROR_1);
     }
 
     @Override
     public Retorno cancelarReserva(int cliente, int numero, String aerolinea) {
-        return new Retorno(Resultado.NO_IMPLEMENTADA);
+        
+         NodoListaAereolinea auxAerolinea = listaAereolinea.obtenerAereolinea(aerolinea);
+         
+         if (listaAereolinea.existeAerolina(aerolinea)) 
+         {
+              NodoListaVuelos auxVuelo = auxAerolinea.LVuelosAereolinea.obtenerVuelo(numero);
+             
+             if (auxVuelo!=null) 
+             {
+                 if (auxVuelo.LReservas.obtenerReserva(numero, cliente) != null) {
+                    NodoColaEspera usuarioencola = auxVuelo.LEspera.getBack();
+                     auxVuelo.LEspera.desencolar();
+                     auxVuelo.LReservas.borrarFin();
+                     auxVuelo.LReservas.InsertarInicio(usuarioencola.cliente, usuarioencola.nVuelo, usuarioencola.aereolinea);
+                     return new Retorno(Resultado.OK);
+                  
+                 }
+                 else
+                     return new Retorno(Resultado.ERROR_1);
+                 
+             }
+             else
+                  return new Retorno(Resultado.ERROR_2);
+            
+        }
+          return new Retorno(Resultado.ERROR_1);
+        
     }
 
     @Override
