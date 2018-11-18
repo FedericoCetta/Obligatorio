@@ -214,68 +214,13 @@ public class Sistema implements ISistema {
     //prueba commit
 
     @Override
-      public Retorno listarServicios(int numero, String aerolinea)
-      {
-           NodoListaAereolinea auxAerolinea = listaAereolinea.obtenerAereolinea(aerolinea);
-           
-         
-           if (auxAerolinea.getNombreAereolinea().toString() == aerolinea)
-           {
-              NodoListaVuelos auxVuelo=  auxAerolinea.LVuelosAereolinea.obtenerVuelo(numero);
-              
-                    if (auxVuelo!=null) 
-                    {
-                        NodoListaServicios auxServ = auxVuelo.LServicios.inicio;
-
-                        while (auxServ!=null)
-                        {
-                         System.out.println("Servicios de la Aerolinea " + auxServ.getNumeroVuelo()+ " Para el Vuelo " + auxServ.getServicio());
-                         auxServ=auxServ.getSiguiente();
-                        }
-
-                    }
-                    else
-                        {
-                            return new Retorno(Resultado.ERROR_1);
-                        }
-            }
-           else
-               {
-                    return new Retorno(Resultado.ERROR_1);
-               }
-               
-
-            return new Retorno(Resultado.OK);
+    public Retorno listarServicios(String numero, String aerolinea) {
+        return new Retorno(Resultado.NO_IMPLEMENTADA);
     }
 
     @Override
     public Retorno listarVuelosAerolinea(String aerolinea) {
-     NodoListaAereolinea auxAerolinea = listaAereolinea.obtenerAereolinea(aerolinea);    
-    
-        if (auxAerolinea.getNombreAereolinea().toString()==aerolinea)
-        {
-            NodoListaVuelos auxVuelo=  auxAerolinea.LVuelosAereolinea.getInicio();
-            
-            if (auxVuelo!=null) 
-            {
-            
-                 System.out.println("Vuelos de la Aerolinea " + auxAerolinea.getNombreAereolinea());
-                 while (auxVuelo!=null)
-                        {
-                      
-                         System.out.println("Ciudad Origen: " + auxVuelo.getCiudadOrigen());
-                         System.out.println("Vuelo " + auxVuelo.getnVuelo()+ " Ciudad Destino " + auxVuelo.getCiudadDestino() + " Estrellas: " + auxVuelo.getEstrellas() + " Ranking: " );
-                         auxVuelo=auxVuelo.getSiguiente();
-                        }
-                 
-                   return new Retorno(Resultado.OK);
-                
-            }
-                       
-                    
-        }
-        return new Retorno(Resultado.ERROR_1);
-    
+        return new Retorno(Resultado.NO_IMPLEMENTADA);
     }
 
     @Override
