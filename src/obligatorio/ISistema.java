@@ -12,7 +12,7 @@ import java.util.Calendar;
  * @author Usuario
  */
 public interface ISistema {
-     Retorno crearSistemaReservas();
+ Retorno crearSistemaReservas();
  Retorno destruirSistemaReservas();
  Retorno registrarVuelo(int numero, String aerolinea, String ciudadOrigen, String ciudadDestino, int estrellas, int capacidad, String fechaHoraSalida, int duracion);
  Retorno ingresarServicio(String aerolinea, int numero, String servicio);
@@ -20,7 +20,7 @@ public interface ISistema {
  Retorno ingresarComentario(String aerolinea, int numero, String comentario, int ranking);
  Retorno realizarReserva(int cliente, int numero, String aerolinea);
  Retorno cancelarReserva(int cliente, int numero, String aerolinea);
- Retorno listarServicios(String numero, String aerolinea);
+ Retorno listarServicios(int numero, String aerolinea);
  Retorno listarVuelosAerolinea(String aerolinea);
  Retorno listarAerolineasRanking();
  Retorno listarComentarios(int numero, String aerolinea);
