@@ -46,8 +46,8 @@ public static void prueba0(Prueba p, Sistema s, int [][] mapa) {
     
     p.ver(s.registrarVuelo(2, "AA", "MVD", "SP", 8, 4, "01/10/2018", 4).resultado, Retorno.Resultado.ERROR_1, "Cantidad de estrellas incorrecto en  vuelo 2 de AA ");
     p.ver(s.registrarVuelo(2, "AA", "MVD", "SP", 5, -4, "01/12/2018", 4).resultado, Retorno.Resultado.ERROR_2, "Duracion incorrecta en vuelo 2 de AA ");
- //     p.ver(s.registrarVuelo(1, "Avianca", "MVD", "SP", 5, 4, "01/10/2018", 4).resultado, Retorno.Resultado.OK, "Se agrego vuelo 1 de Avianca correctamente");
- //   p.ver(s.registrarVuelo(3, "CopaAir", "MVD", "SP", 3, 4, "01/10/2018", 4).resultado, Retorno.Resultado.ERROR_4, "ciudad origen y destino incorrecta");  
+    p.ver(s.registrarVuelo(1, "Avianca", "MVD", "SP", 5, 4, "01/10/2018", 4).resultado, Retorno.Resultado.OK, "Se agrego vuelo 1 de Avianca correctamente");
+    p.ver(s.registrarVuelo(3, "CopaAir", "MVD", "MVD", 3, 4, "01/10/2018", 4).resultado, Retorno.Resultado.ERROR_4, "ciudad origen y destino incorrecta");  
    // cargo servicios
    
    /*

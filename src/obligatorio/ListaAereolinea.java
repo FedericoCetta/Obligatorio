@@ -138,7 +138,7 @@ public class ListaAereolinea implements IListaAereolinea {
 
     @Override
     public boolean existeAerolina(String Aerolinea) {
-          NodoListaAereolinea aux=this.inicio;
+          NodoListaAereolinea aux=this.getInicio();
           boolean existe = false;
           
           while(aux != null && !existe)
@@ -153,7 +153,7 @@ public class ListaAereolinea implements IListaAereolinea {
           
           return existe;
 
-    }
+    }   
     
     
 }
