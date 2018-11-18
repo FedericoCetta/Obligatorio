@@ -50,17 +50,17 @@ public static void prueba0(Prueba p, Sistema s, int [][] mapa) {
     p.ver(s.registrarVuelo(3, "CopaAir", "MVD", "MVD", 3, 4, "01/10/2018", 4).resultado, Retorno.Resultado.ERROR_4, "ciudad origen y destino incorrecta");  
    // cargo servicios
    
-   /*
+ 
    p.ver(s.ingresarServicio("AA", 1, "Comida").resultado, Retorno.Resultado.OK, "Se registro servicio de comida en vuelo 1 AA");
    p.ver(s.ingresarServicio("AA", 1, "Wifi").resultado, Retorno.Resultado.OK, "Se registro servicio Wifi en vuelo 1 AA");
    p.ver(s.ingresarServicio("AA", 3, "Comida").resultado, Retorno.Resultado.ERROR_1, "Se intenta registrar un servicio en el vuelo 3 de AA que no existe");
-   
+  
    p.ver(s.listarServicios("1", "AA").resultado, Retorno.Resultado.OK, " Listado de servicios del vuelo 1 AA");
    
    p.ver(s.borrarServicio("AA", 1, "Wifi").resultado, Retorno.Resultado.OK, "Se borro servicio wifi en vuelo 1 de AA");
    
    p.ver(s.listarServicios("1", "AA").resultado, Retorno.Resultado.OK, " Listado de servicios del vuelo 1 AA");
-
+ /*
    p.ver(s.listarAerolineasRanking().resultado, Retorno.Resultado.OK, "Listado de ranking ");
    p.ver(s.ingresarComentario("AA", 1, " regular", 3).resultado, Retorno.Resultado.OK, "Vuelo 1 de AA califacion 3");
    p.ver(s.ingresarComentario("AA", 1, " regular", 8).resultado, Retorno.Resultado.ERROR_1, "Vuelo 1 de AA califacion 8 fuera de rango");

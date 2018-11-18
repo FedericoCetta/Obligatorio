@@ -89,7 +89,7 @@ public class Sistema implements ISistema {
     @Override
     public Retorno ingresarServicio(String aerolinea, int numero, String servicio) {
             NodoListaAereolinea auxAereo = listaAereolinea.obtenerAereolinea(aerolinea);
-            if(auxAereo.equals(aerolinea)){
+            if(auxAereo.getNombreAereolinea().toString() == aerolinea){
                  NodoListaVuelos auxVuelo=  auxAereo.LVuelosAereolinea.obtenerVuelo(numero);
                  if(auxVuelo != null){
                    auxVuelo.LServicios.insertarInicio(aerolinea, numero, servicio);
@@ -107,7 +107,7 @@ public class Sistema implements ISistema {
     @Override
     public Retorno borrarServicio(String aerolinea, int numero, String servicio) {
       NodoListaAereolinea AuxAerolinea = listaAereolinea.obtenerAereolinea(aerolinea);
-          if (AuxAerolinea.equals(aerolinea)) {
+          if (AuxAerolinea.getNombreAereolinea().toString() == aerolinea) {
             NodoListaVuelos auxVuelo=  AuxAerolinea.LVuelosAereolinea.obtenerVuelo(numero);
                 if (auxVuelo != null) {
                     
