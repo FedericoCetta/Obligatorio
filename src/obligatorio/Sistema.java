@@ -62,7 +62,7 @@ public class Sistema implements ISistema {
                                              }
                                              else if(auxVuelo.obtenerVuelo(numero) == null)
                                              {
-                                                    if(ciudadOrigen !=ciudadDestino && auxVuelo.obtenerCiudadyDestino(aerolinea,ciudadOrigen, ciudadDestino)== null)
+                                                    if(ciudadOrigen !=ciudadDestino)
                                                     {
                                                          auxVuelo.insertarInicio(numero, aerolinea, ciudadOrigen, ciudadDestino, estrellas, capacidad, fechaHoraSalida, duracion);
                                                          return new Retorno(Resultado.OK);

@@ -127,9 +127,9 @@ public class ListaVuelos implements IListaVuelos {
     }
 
     @Override
-    public NodoListaVuelos obtenerCiudadyDestino(String aereolinea,String ciudadOrigen, String ciudadDestino) {
+    public NodoListaVuelos obtenerCiudadyDestino(String ciudadOrigen, String ciudadDestino) {
          NodoListaVuelos aux=this.inicio;
-        while (aux!=null && aux.getAereolinea()==aereolinea && aux.getCiudadOrigen().toString() != ciudadOrigen && aux.getCiudadDestino().toString() !=ciudadDestino)
+        while (aux!=null && aux.getCiudadOrigen() != ciudadOrigen && aux.getCiudadDestino() !=ciudadDestino)
             aux=aux.getSiguiente();
         //encontrÃ© dato o lleguÃ© al final
         return aux;  
