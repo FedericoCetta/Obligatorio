@@ -62,7 +62,7 @@ public class Sistema implements ISistema {
                                              }
                                              else if(auxVuelo.obtenerVuelo(numero) == null)
                                              {
-                                                    if(ciudadOrigen !=ciudadDestino && auxVuelo.obtenerCiudadyDestino(aerolinea,ciudadOrigen, ciudadDestino)== null)
+                                                    if(ciudadOrigen !=ciudadDestino && auxVuelo.obtenerCiudadyDestino(aerolinea,ciudadOrigen, ciudadDestino) == false)
                                                     {
                                                          auxVuelo.insertarInicio(numero, aerolinea, ciudadOrigen, ciudadDestino, estrellas, capacidad, fechaHoraSalida, duracion);
                                                          return new Retorno(Resultado.OK);
@@ -217,7 +217,8 @@ public class Sistema implements ISistema {
   public Retorno listarServicios(int numero, String aerolinea)
       {
            NodoListaAereolinea auxAerolinea = listaAereolinea.obtenerAereolinea(aerolinea);
-           
+           String R="";
+            Retorno ret=new Retorno(Resultado.OK);
          
            if (auxAerolinea.getNombreAereolinea().toString() == aerolinea)
            {
@@ -226,23 +227,27 @@ public class Sistema implements ISistema {
                     if (auxVuelo!=null) 
                     {
                         NodoListaServicios auxServ = auxVuelo.LServicios.inicio;
-                         while (auxServ!=null)
+                         
+                       
+                        while (auxServ!=null)
                         {
-                         System.out.println("Servicios de la Aerolinea " + auxServ.getNumeroVuelo()+ " Para el Vuelo " + auxServ.getServicio());
+                         R=R+"Servicios de la Aerolinea " + auxServ.getNumeroVuelo()+ " Para el Vuelo " + auxServ.getServicio()+ '\n';
                          auxServ=auxServ.getSiguiente();
                         }
+                        
+                         ret.valorString=R;
+                        return ret;
                      }
                     else
                         {
                             return new Retorno(Resultado.ERROR_1);
                         }
             }
-           else
-               {
-                    return new Retorno(Resultado.ERROR_1);
-               }
+          
+              return new Retorno(Resultado.ERROR_1);
                
-             return new Retorno(Resultado.OK);
+                
+         
     }
 
     @Override
@@ -261,7 +266,7 @@ public class Sistema implements ISistema {
                         {
                       
                          System.out.println("Ciudad Origen: " + auxVuelo.getCiudadOrigen());
-                         System.out.println("Vuelo " + auxVuelo.getnVuelo()+ " Ciudad Destino " + auxVuelo.getCiudadDestino() + " Estrellas: " + auxVuelo.getEstrellas() + " Ranking: " );
+                         System.out.println("Vuelo " + auxVuelo.getnVuelo()+ " Ciudad Destino " + auxVuelo.getCiudadDestino() + " Estrellas: " + auxVuelo.getEstrellas() + " Ranking:  " );
                          auxVuelo=auxVuelo.getSiguiente();
                         }
                  
