@@ -132,10 +132,11 @@ public class Sistema implements ISistema {
     public Retorno ingresarComentario(String aerolinea, int numero, String comentario, int ranking) {
         NodoListaAereolinea auxAerolinea = listaAereolinea.obtenerAereolinea(aerolinea);
         
-            if (auxAerolinea.equals(aerolinea)) {
+            if (auxAerolinea.getNombreAereolinea() == aerolinea) {
+                
                 NodoListaVuelos auxVuelo = auxAerolinea.LVuelosAereolinea.obtenerVuelo(numero);
                 
-                if (auxVuelo!=null) {
+                if (auxVuelo !=null) {
                     
                     if (ranking >0 && ranking <=5 ) {
                          auxVuelo.LComentarios.agregarInicio(aerolinea, numero, comentario, ranking);
@@ -150,7 +151,7 @@ public class Sistema implements ISistema {
                     return new Retorno(Resultado.ERROR_2);
                 }
         }
-             return new Retorno(Resultado.NO_IMPLEMENTADA);
+             return new Retorno(Resultado.ERROR_2);
     }
 
     @Override
@@ -287,7 +288,39 @@ public class Sistema implements ISistema {
 
     @Override
     public Retorno listarComentarios(int numero, String aerolinea) {
-        return new Retorno(Resultado.NO_IMPLEMENTADA);
+    NodoListaAereolinea auxAerolinea = listaAereolinea.obtenerAereolinea(aerolinea);    
+    
+        if (auxAerolinea.getNombreAereolinea().toString()==aerolinea)
+        {
+            NodoListaVuelos auxVuelo=  auxAerolinea.LVuelosAereolinea.obtenerVuelo(numero);
+            
+            if (auxVuelo.getnVuelo() == numero) 
+            {
+                 NodoListaComentarios auxComentarios = auxVuelo.LComentarios.obtenerComentario(numero);
+                 
+                if(auxComentarios  != null){
+                       while (auxComentarios!=null)
+                        {
+                      
+                         System.out.println("Comentario: " + auxComentarios.getComentario()+"Ranking " + auxComentarios.getRanking() );
+
+                        }
+                       auxComentarios=auxComentarios.getSiguiente();
+                       
+                   return new Retorno(Resultado.OK);
+                
+                
+                }
+                 else
+                    
+                 return new Retorno(Resultado.ERROR_1);
+                   
+                   
+            }
+                       
+                    
+        }
+        return new Retorno(Resultado.ERROR_1);   
     }
 
     @Override
