@@ -18,7 +18,7 @@ public class Obligatorio {
         Sistema s = new Sistema();
        
         
-        prueba0(p,s, mapa);
+        prueba3(p,s, mapa);
         
         
 
@@ -156,7 +156,7 @@ public static void prueba3(Prueba p, Sistema s, int [][]mapa){
         p.ver(s.listarServicios(701, "LAN").resultado, Retorno.Resultado.OK, "Lista servicios del vuelo LAN 701");
 
         // SE BORRA UN SERVICIO DEL VUELO 701 DE LAN
-
+/*revisar aca*/
         System.out.println("SE BORRA SERVICIO 2 DEL VUELO 701 DE LAN");
 
         p.ver(s.borrarServicio("LAN", 701, "Servicio2").resultado, Retorno.Resultado.OK, "Se borra el servicio 1 recientemente creado.");

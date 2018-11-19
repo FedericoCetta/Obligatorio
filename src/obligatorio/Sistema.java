@@ -157,7 +157,7 @@ public class Sistema implements ISistema {
     public Retorno realizarReserva(int cliente, int numero, String aerolinea) {
         NodoListaAereolinea auxAerolinea = listaAereolinea.obtenerAereolinea(aerolinea);
         
-            if (auxAerolinea.equals(aerolinea))
+            if (auxAerolinea.getNombreAereolinea()== aerolinea)
             {
                 NodoListaVuelos auxVuelo = auxAerolinea.LVuelosAereolinea.obtenerVuelo(numero);
                 if (auxVuelo!=null)
