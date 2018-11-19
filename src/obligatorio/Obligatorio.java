@@ -24,14 +24,14 @@ public class Obligatorio {
 
     }
     
-    
+    // LA  PUTA MADRE CON GIT
   
     
     
 public static void prueba0(Prueba p, Sistema s, int [][] mapa) {
         
     
-    p.ver(s.crearSistemaReservas().resultado, Retorno.Resultado.OK, "Se creo sistma de reservas para x ciudades");
+    p.ver(s.crearSistemaReservas().resultado, Retorno.Resultado.OK, "Se creo sistema");
     
      s.registarAereolinea("CopaAir");
      s.registarAereolinea("Latam");
@@ -57,18 +57,24 @@ public static void prueba0(Prueba p, Sistema s, int [][] mapa) {
    p.ver(s.ingresarServicio("AA", 1, "Wifi").resultado, Retorno.Resultado.OK, "Se registro servicio Wifi en vuelo 1 AA");
    p.ver(s.ingresarServicio("AA", 3, "Comida").resultado, Retorno.Resultado.ERROR_1, "Se intenta registrar un servicio en el vuelo 3 de AA que no existe");
   
-   p.ver(s.listarServicios("1", "AA").resultado, Retorno.Resultado.OK, " Listado de servicios del vuelo 1 AA");
+   p.ver(s.listarServicios(1, "AA").resultado, Retorno.Resultado.OK, " Listado de servicios del vuelo 1 AA");
    
    p.ver(s.borrarServicio("AA", 1, "Wifi").resultado, Retorno.Resultado.OK, "Se borro servicio wifi en vuelo 1 de AA");
    
-   p.ver(s.listarServicios("1", "AA").resultado, Retorno.Resultado.OK, " Listado de servicios del vuelo 1 AA");
- /*
-   p.ver(s.listarAerolineasRanking().resultado, Retorno.Resultado.OK, "Listado de ranking ");
-   p.ver(s.ingresarComentario("AA", 1, " regular", 3).resultado, Retorno.Resultado.OK, "Vuelo 1 de AA califacion 3");
-   p.ver(s.ingresarComentario("AA", 1, " regular", 8).resultado, Retorno.Resultado.ERROR_1, "Vuelo 1 de AA califacion 8 fuera de rango");
-   p.ver(s.ingresarComentario("AA", 5, " regular", 3).resultado, Retorno.Resultado.ERROR_2, "Vuelo 5 de AA incorrecto fue calificado con 3");
-   p.ver(s.listarAerolineasRanking().resultado, Retorno.Resultado.OK, "Listado de ranking ");
-*/
+   p.ver(s.listarServicios(1, "AA").resultado, Retorno.Resultado.OK,s.listarServicios(1, "AA").valorString);
+ 
+  // p.ver(s.listarAerolineasRanking().resultado, Retorno.Resultado.OK, "Listado de ranking ");
+   
+  
+   p.ver(s.ingresarComentario("AA", 1, " regular", 3).resultado, Retorno.Resultado.OK, "Vuelo 2 de AA califacion 3");
+   p.ver(s.ingresarComentario("AA", 2, " bien", 2).resultado, Retorno.Resultado.ERROR_2, "No existe Vuelo 2 de AA ");
+   p.ver(s.ingresarComentario("AA", 1, " bien", 8).resultado, Retorno.Resultado.ERROR_1, "Vuelo 1 de AA califacion 8 fuera de rango");
+   
+
+//p.ver(s.ingresarComentario("AA", 5, " regular", 3).resultado, Retorno.Resultado.ERROR_2, "Vuelo 5 de AA incorrecto fue calificado con 3");
+   //p.ver(s.listarAerolineasRanking().resultado, Retorno.Resultado.OK, "Listado de ranking ");
+      
+   p.ver(s.listarComentarios(1,"AA").resultado, Retorno.Resultado.OK, "Lista Comentarios  vuelo 1 de AA");
    
     p.ver(s.destruirSistemaReservas().resultado, Retorno.Resultado.OK, "Se destruye sistema de reservas");
     p.imprimirResultadosPrueba();
@@ -153,10 +159,10 @@ public static void prueba3(Prueba p, Sistema s, int [][]mapa){
         // LISTADO DE SERVICIOS DEL VUELO 701 DE LAN
 
         System.out.println("LISTADO DE SERVICIOS DEL VUELO 701");
-        p.ver(s.listarServicios("701", "LAN").resultado, Retorno.Resultado.OK, "Lista servicios del vuelo LAN 701");
+        p.ver(s.listarServicios(701, "LAN").resultado, Retorno.Resultado.OK, "Lista servicios del vuelo LAN 701");
 
         // SE BORRA UN SERVICIO DEL VUELO 701 DE LAN
-
+        /*revisar aca*/
         System.out.println("SE BORRA SERVICIO 2 DEL VUELO 701 DE LAN");
 
         p.ver(s.borrarServicio("LAN", 701, "Servicio2").resultado, Retorno.Resultado.OK, "Se borra el servicio 1 recientemente creado.");
@@ -165,7 +171,7 @@ public static void prueba3(Prueba p, Sistema s, int [][]mapa){
         // SE LISTA NUEVAMENTE LOS SERVICIOS DEL VUELO 701 DE LAN
 
          System.out.println("LISTADO DE SERVICIOS DEL VUELO 701");
-        p.ver(s.listarServicios("701", "LAN").resultado, Retorno.Resultado.OK,
+        p.ver(s.listarServicios(701, "LAN").resultado, Retorno.Resultado.OK,
 
                 "Lista servicios del vuelo LAN 701");       
         

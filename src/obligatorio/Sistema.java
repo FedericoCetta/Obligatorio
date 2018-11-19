@@ -62,7 +62,7 @@ public class Sistema implements ISistema {
                                              }
                                              else if(auxVuelo.obtenerVuelo(numero) == null)
                                              {
-                                                    if(ciudadOrigen !=ciudadDestino && auxVuelo.obtenerCiudadyDestino(aerolinea,ciudadOrigen, ciudadDestino)== null)
+                                                    if(ciudadOrigen !=ciudadDestino && auxVuelo.obtenerCiudadyDestino(aerolinea,ciudadOrigen, ciudadDestino) == false)
                                                     {
                                                          auxVuelo.insertarInicio(numero, aerolinea, ciudadOrigen, ciudadDestino, estrellas, capacidad, fechaHoraSalida, duracion);
                                                          return new Retorno(Resultado.OK);
@@ -132,10 +132,11 @@ public class Sistema implements ISistema {
     public Retorno ingresarComentario(String aerolinea, int numero, String comentario, int ranking) {
         NodoListaAereolinea auxAerolinea = listaAereolinea.obtenerAereolinea(aerolinea);
         
-            if (auxAerolinea.equals(aerolinea)) {
+            if (auxAerolinea.getNombreAereolinea() == aerolinea) {
+                
                 NodoListaVuelos auxVuelo = auxAerolinea.LVuelosAereolinea.obtenerVuelo(numero);
                 
-                if (auxVuelo!=null) {
+                if (auxVuelo !=null) {
                     
                     if (ranking >0 && ranking <=5 ) {
                          auxVuelo.LComentarios.agregarInicio(aerolinea, numero, comentario, ranking);
@@ -150,14 +151,14 @@ public class Sistema implements ISistema {
                     return new Retorno(Resultado.ERROR_2);
                 }
         }
-             return new Retorno(Resultado.NO_IMPLEMENTADA);
+             return new Retorno(Resultado.ERROR_2);
     }
 
     @Override
     public Retorno realizarReserva(int cliente, int numero, String aerolinea) {
         NodoListaAereolinea auxAerolinea = listaAereolinea.obtenerAereolinea(aerolinea);
         
-            if (auxAerolinea.equals(aerolinea))
+            if (auxAerolinea.getNombreAereolinea()== aerolinea)
             {
                 NodoListaVuelos auxVuelo = auxAerolinea.LVuelosAereolinea.obtenerVuelo(numero);
                 if (auxVuelo!=null)
@@ -213,15 +214,72 @@ public class Sistema implements ISistema {
     
     //prueba commit
 
-    @Override
-    public Retorno listarServicios(String numero, String aerolinea) {
-        return new Retorno(Resultado.NO_IMPLEMENTADA);
+     @Override
+  public Retorno listarServicios(int numero, String aerolinea)
+      {
+           NodoListaAereolinea auxAerolinea = listaAereolinea.obtenerAereolinea(aerolinea);
+           String R="";
+            Retorno ret=new Retorno(Resultado.OK);
+         
+           if (auxAerolinea.getNombreAereolinea().toString() == aerolinea)
+           {
+              NodoListaVuelos auxVuelo=  auxAerolinea.LVuelosAereolinea.obtenerVuelo(numero);
+              
+                    if (auxVuelo!=null) 
+                    {
+                        NodoListaServicios auxServ = auxVuelo.LServicios.inicio;
+                         
+                       
+                        while (auxServ!=null)
+                        {
+                         R=R+"Servicios de la Aerolinea " + auxServ.getNumeroVuelo()+ " Para el Vuelo " + auxServ.getServicio()+ '\n';
+                         auxServ=auxServ.getSiguiente();
+                        }
+                        
+                         ret.valorString=R;
+                        return ret;
+                     }
+                    else
+                        {
+                            return new Retorno(Resultado.ERROR_1);
+                        }
+            }
+          
+              return new Retorno(Resultado.ERROR_1);
+               
+                
+         
     }
 
     @Override
     public Retorno listarVuelosAerolinea(String aerolinea) {
-        return new Retorno(Resultado.NO_IMPLEMENTADA);
+     NodoListaAereolinea auxAerolinea = listaAereolinea.obtenerAereolinea(aerolinea);    
+    
+        if (auxAerolinea.getNombreAereolinea().toString()==aerolinea)
+        {
+            NodoListaVuelos auxVuelo=  auxAerolinea.LVuelosAereolinea.getInicio();
+            
+            if (auxVuelo!=null) 
+            {
+            
+                 System.out.println("Vuelos de la Aerolinea " + auxAerolinea.getNombreAereolinea());
+                 while (auxVuelo!=null)
+                        {
+                      
+                         System.out.println("Ciudad Origen: " + auxVuelo.getCiudadOrigen());
+                         System.out.println("Vuelo " + auxVuelo.getnVuelo()+ " Ciudad Destino " + auxVuelo.getCiudadDestino() + " Estrellas: " + auxVuelo.getEstrellas() + " Ranking:  " );
+                         auxVuelo=auxVuelo.getSiguiente();
+                        }
+                 
+                   return new Retorno(Resultado.OK);
+                
+            }
+                       
+                    
+        }
+        return new Retorno(Resultado.ERROR_1);  
     }
+
 
     @Override
     public Retorno listarAerolineasRanking() {
@@ -230,7 +288,39 @@ public class Sistema implements ISistema {
 
     @Override
     public Retorno listarComentarios(int numero, String aerolinea) {
-        return new Retorno(Resultado.NO_IMPLEMENTADA);
+    NodoListaAereolinea auxAerolinea = listaAereolinea.obtenerAereolinea(aerolinea);    
+    
+        if (auxAerolinea.getNombreAereolinea().toString()==aerolinea)
+        {
+            NodoListaVuelos auxVuelo=  auxAerolinea.LVuelosAereolinea.obtenerVuelo(numero);
+            
+            if (auxVuelo.getnVuelo() == numero) 
+            {
+                 NodoListaComentarios auxComentarios = auxVuelo.LComentarios.obtenerComentario(numero);
+                 
+                if(auxComentarios  != null){
+                       while (auxComentarios!=null)
+                        {
+                      
+                         System.out.println("Comentario: " + auxComentarios.getComentario()+"Ranking " + auxComentarios.getRanking() );
+                auxComentarios=auxComentarios.getSiguiente();
+                        }
+                       
+                       
+                   return new Retorno(Resultado.OK);
+                
+                
+                }
+                 else
+                    
+                 return new Retorno(Resultado.ERROR_1);
+                   
+                   
+            }
+                       
+                    
+        }
+        return new Retorno(Resultado.ERROR_1);   
     }
 
     @Override

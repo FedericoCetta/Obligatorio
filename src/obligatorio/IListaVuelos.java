@@ -21,6 +21,6 @@ public interface IListaVuelos {
     public void mostrar();
     public void agregarOrd(int nVuelo, String aereolinea, String ciudadOrigen, String ciudadDestino, int estrellas, int capacidad, String FechayHoraSalida, int duracion);
     public NodoListaVuelos obtenerVuelo(int numeroVuelo);
-       public NodoListaVuelos obtenerCiudadyDestino(String aereolinea,String ciudadOrigen, String ciudadDestino);
+       public boolean obtenerCiudadyDestino(String aereolinea,String ciudadOrigen, String ciudadDestino);
     
 }
