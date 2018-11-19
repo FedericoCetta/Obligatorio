@@ -152,7 +152,7 @@ public class Sistema implements ISistema {
         }
              return new Retorno(Resultado.NO_IMPLEMENTADA);
     }
-    //otra rama
+    //otra ramas
 
     @Override
     public Retorno realizarReserva(int cliente, int numero, String aerolinea) {
