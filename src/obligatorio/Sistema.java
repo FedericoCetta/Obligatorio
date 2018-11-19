@@ -303,9 +303,9 @@ public class Sistema implements ISistema {
                         {
                       
                          System.out.println("Comentario: " + auxComentarios.getComentario()+"Ranking " + auxComentarios.getRanking() );
-
+                auxComentarios=auxComentarios.getSiguiente();
                         }
-                       auxComentarios=auxComentarios.getSiguiente();
+                       
                        
                    return new Retorno(Resultado.OK);
                 

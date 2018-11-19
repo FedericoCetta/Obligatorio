@@ -24,7 +24,7 @@ public class Obligatorio {
 
     }
     
-    
+    // LA  PUTA MADRE CON GIT
   
     
     
@@ -74,7 +74,7 @@ public static void prueba0(Prueba p, Sistema s, int [][] mapa) {
 //p.ver(s.ingresarComentario("AA", 5, " regular", 3).resultado, Retorno.Resultado.ERROR_2, "Vuelo 5 de AA incorrecto fue calificado con 3");
    //p.ver(s.listarAerolineasRanking().resultado, Retorno.Resultado.OK, "Listado de ranking ");
       
-   //p.ver(s.listarComentarios(1,"AA").resultado, Retorno.Resultado.OK, "Lista Comentarios  vuelo 1 de AA");
+   p.ver(s.listarComentarios(1,"AA").resultado, Retorno.Resultado.OK, "Lista Comentarios  vuelo 1 de AA");
    
     p.ver(s.destruirSistemaReservas().resultado, Retorno.Resultado.OK, "Se destruye sistema de reservas");
     p.imprimirResultadosPrueba();
