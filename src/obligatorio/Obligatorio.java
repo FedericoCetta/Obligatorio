@@ -156,20 +156,22 @@ public static void prueba3(Prueba p, Sistema s, int [][]mapa){
         p.ver(s.registrarVuelo(2584, "CopaAir", "Montevideo", "PanamaCity", 4, 4,"12/12/2018", 12).resultado, Retorno.Resultado.OK, "Se crea el vuelo LAN 2584");
         p.ver(s.registrarVuelo(2784, "CopaAir", "Montevideo", "PuntaCana", 3, 100, "15/12/2018", 2).resultado, Retorno.Resultado.OK, "Se crea el vuelo LAN 2784");
 
-        System.out.println("se intenta regisrar vuelo 2584 de CopaAir Repetido");
+        System.out.println("SE INTENTA REGISTRAR UN VUELO DE COPA AIR REPETIDO");
         p.ver(s.registrarVuelo(2784, "CopaAir", "Montevideo", "PuntaCana", 3, 100, "20/12/2018", 2).resultado, Retorno.Resultado.ERROR_3, "se intenta regisrar vuelo 2584 de COPA AIR Repetido");
    
         
         
-        // LISTADO DE VUELOS DE LA AEROLINEA LAN
+        // LISTADO DE VUELOS DE LA AEROLINEAS 
 
-        System.out.println("LISTADO DE VUELOS AEROLINEA LAN");
+        System.out.println("LISTADO DE VUELOS AEROLINEAS ");
 
         System.out.println("_______________________________");
          p.ver(s.listarVuelosAerolinea("LAN").resultado, Retorno.Resultado.OK,s.listarVuelosAerolinea("LAN").valorString);
-          p.ver(s.listarVuelosAerolinea("AA").resultado, Retorno.Resultado.OK,s.listarVuelosAerolinea("AA").valorString);
+         p.ver(s.listarVuelosAerolinea("AA").resultado, Retorno.Resultado.OK,s.listarVuelosAerolinea("AA").valorString);
+         p.ver(s.listarVuelosAerolinea("CopaAir").resultado, Retorno.Resultado.OK,s.listarVuelosAerolinea("CopaAir").valorString);
+
+          // AEREOLINEA INEXISTENTE
           p.ver(s.listarVuelosAerolinea("AAA").resultado, Retorno.Resultado.ERROR_1,s.listarVuelosAerolinea("AAA").valorString);
-          p.ver(s.listarVuelosAerolinea("CopaAir").resultado, Retorno.Resultado.ERROR_1,s.listarVuelosAerolinea("CopaAir").valorString);
 
         
 
