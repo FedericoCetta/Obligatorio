@@ -45,10 +45,10 @@ public class ListaComentarios implements IListaComentarios{
     @Override
     public void agregarInicio(String aerolinea, int numero, String comentario, int ranking) {
         NodoListaComentarios nuevo = new NodoListaComentarios(aerolinea,numero, comentario, ranking);
-        nuevo.setSiguiente(nuevo);
-        this.inicio=nuevo;
-        if(this.fin==null)//estoy insertando el primer nodo
-        this.fin=nuevo;
+        nuevo.setSiguiente(this.getInicio());
+        this.setInicio(nuevo);
+        if(this.getFin()==null)//estoy insertando el primer nodo
+           this.setFin(nuevo);  
     }
 
     @Override
