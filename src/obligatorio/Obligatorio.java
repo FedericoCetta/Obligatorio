@@ -18,7 +18,7 @@ public class Obligatorio {
         Sistema s = new Sistema();
        
         
-        prueba0(p,s, mapa);
+        prueba3(p,s, mapa);
         
         
 
@@ -116,6 +116,8 @@ public static void prueba3(Prueba p, Sistema s, int [][]mapa){
         p.ver(s.crearSistemaReservas().resultado, Retorno.Resultado.OK, "Se crea el sistema.");
         System.out.println("se creo sistema");
         //--------------------------------- 
+        
+        System.out.println("se registran Aereolineas");
      s.registarAereolinea("CopaAir");
      s.registarAereolinea("LAN");
      s.registarAereolinea("CopaAir");
@@ -135,22 +137,41 @@ public static void prueba3(Prueba p, Sistema s, int [][]mapa){
         System.out.println("se intenta registrar vuelo 102 de AA repetido");
         p.ver(s.registrarVuelo(102, "AA", "Montevideo", "Miami", 5, 1, "12/12/2018", 9).resultado, Retorno.Resultado.ERROR_3, "Se intenta registrar vuelo repetido 102 de aa");
 
+        
+        
         // REGISTRO DE VUELOS DE LA AEROLINEA LAN
 
         System.out.println("Registro de vuelos 701 702 de LAN");
-        p.ver(s.registrarVuelo(701, "LAN", "San Pablo", "MilÃƒÂ¡n", 4, 4,"12/12/2018", 12).resultado, Retorno.Resultado.OK, "Se crea el vuelo LAN 701");
+        p.ver(s.registrarVuelo(701, "LAN", "San Pablo", "Milan", 4, 4,"12/12/2018", 12).resultado, Retorno.Resultado.OK, "Se crea el vuelo LAN 701");
         p.ver(s.registrarVuelo(702, "LAN", "Montevideo", "Santiago", 3, 100, "15/12/2018", 2).resultado, Retorno.Resultado.OK, "Se crea el vuelo LAN 702");
 
         System.out.println("se intenta regisrar vuelo 702 de LAN Repetido");
         p.ver(s.registrarVuelo(702, "LAN", "Montevideo", "Santiago", 3, 100, "20/12/2018", 2).resultado, Retorno.Resultado.ERROR_3, "se intenta regisrar vuelo 702 de LAN Repetido");
    
+        
+        
+        // REGISTRO DE VUELOS DE LA AEREOLINEA A COPA AIR
+        
+         System.out.println("Registro de vuelos 2584 2784 de COPAAIR");
+        p.ver(s.registrarVuelo(2584, "CopaAir", "Montevideo", "PanamaCity", 4, 4,"12/12/2018", 12).resultado, Retorno.Resultado.OK, "Se crea el vuelo LAN 2584");
+        p.ver(s.registrarVuelo(2784, "CopaAir", "Montevideo", "PuntaCana", 3, 100, "15/12/2018", 2).resultado, Retorno.Resultado.OK, "Se crea el vuelo LAN 2784");
+
+        System.out.println("se intenta regisrar vuelo 2584 de CopaAir Repetido");
+        p.ver(s.registrarVuelo(2784, "CopaAir", "Montevideo", "PuntaCana", 3, 100, "20/12/2018", 2).resultado, Retorno.Resultado.ERROR_3, "se intenta regisrar vuelo 2584 de COPA AIR Repetido");
+   
+        
+        
         // LISTADO DE VUELOS DE LA AEROLINEA LAN
 
         System.out.println("LISTADO DE VUELOS AEROLINEA LAN");
 
         System.out.println("_______________________________");
+         p.ver(s.listarVuelosAerolinea("LAN").resultado, Retorno.Resultado.OK,s.listarVuelosAerolinea("LAN").valorString);
+          p.ver(s.listarVuelosAerolinea("AA").resultado, Retorno.Resultado.OK,s.listarVuelosAerolinea("AA").valorString);
+          p.ver(s.listarVuelosAerolinea("AAA").resultado, Retorno.Resultado.ERROR_1,s.listarVuelosAerolinea("AAA").valorString);
+          p.ver(s.listarVuelosAerolinea("CopaAir").resultado, Retorno.Resultado.ERROR_1,s.listarVuelosAerolinea("CopaAir").valorString);
 
-        p.ver(s.listarVuelosAerolinea("LAN").resultado, Retorno.Resultado.OK, "Lista vuelos de LAN.");
+        
 
          // INGRESO DE SERVICIOS AL VUELO 701 DE LAN
 
@@ -162,7 +183,8 @@ public static void prueba3(Prueba p, Sistema s, int [][]mapa){
         // LISTADO DE SERVICIOS DEL VUELO 701 DE LAN
 
         System.out.println("LISTADO DE SERVICIOS DEL VUELO 701");
-        p.ver(s.listarServicios(701, "LAN").resultado, Retorno.Resultado.OK, "Lista servicios del vuelo LAN 701");
+       p.ver(s.listarServicios(701, "LAN").resultado, Retorno.Resultado.OK,s.listarServicios(701, "LAN").valorString);       
+        
 
         // SE BORRA UN SERVICIO DEL VUELO 701 DE LAN
         /*revisar aca*/
@@ -174,11 +196,9 @@ public static void prueba3(Prueba p, Sistema s, int [][]mapa){
         // SE LISTA NUEVAMENTE LOS SERVICIOS DEL VUELO 701 DE LAN
 
          System.out.println("LISTADO DE SERVICIOS DEL VUELO 701");
-        p.ver(s.listarServicios(701, "LAN").resultado, Retorno.Resultado.OK,
-
-                "Lista servicios del vuelo LAN 701");       
+        p.ver(s.listarServicios(701, "LAN").resultado, Retorno.Resultado.OK,s.listarServicios(701, "LAN").valorString);       
         
-// RESERVAS DEL VUELO 701 DE LAN
+        // RESERVAS DEL VUELO 701 DE LAN
 
          System.out.println("SE AGREGAN 4 RESERVAS AL VUELO 701 LAN CON CUPO 4");
         p.ver(s.realizarReserva(1, 701, "LAN").resultado, Retorno.Resultado.OK,
@@ -197,13 +217,7 @@ public static void prueba3(Prueba p, Sistema s, int [][]mapa){
 
                 "Se ingresa una reserva al Vuelo LAN 701.");
 
-        // LISTA DE ESPERA - QUE DEBE SER VACIA        
-
-         System.out.println("LISTADO DE ESPERA DEL VUELO 701");
-
-        p.ver(s.listarEspera(701, "LAN").resultado, Retorno.Resultado.OK,
-
-                "Lista lista de espera del vuelo LAN 701. DeberÃƒÂ­a ser vacÃƒÂ­a.");      
+           
 
         // NUEVAS RESERVAS AL VUELO 701 QUE SUPERAN CAPACIDAD
 
@@ -215,7 +229,7 @@ public static void prueba3(Prueba p, Sistema s, int [][]mapa){
 
          System.out.println("LISTADO DE ESPERA DEL VUELO 701");
 
-        p.ver(s.listarEspera(701, "LAN").resultado, Retorno.Resultado.OK, "Lista lista de espera del vuelo LAN 701. DeberÃƒÂ­a mostrar 5 y 6.");
+        p.ver(s.listarEspera(701, "LAN").resultado, Retorno.Resultado.OK,s.listarEspera(701, "LAN").valorString);
 
 
 
@@ -231,7 +245,7 @@ public static void prueba3(Prueba p, Sistema s, int [][]mapa){
 
          System.out.println("LISTADO DE ESPERA DEL VUELO 701");
 
-        p.ver(s.listarEspera(701, "LAN").resultado, Retorno.Resultado.OK, "Lista lista de espera del vuelo LAN 701. DeberÃƒÂ­a mostrar 6.");
+        p.ver(s.listarEspera(701, "LAN").resultado, Retorno.Resultado.OK,s.listarEspera(701, "LAN").valorString);
 
 
 
@@ -249,7 +263,7 @@ public static void prueba3(Prueba p, Sistema s, int [][]mapa){
 
         System.out.println("RANKING DE AEROLINEAS");
 
-        p.ver(s.listarAerolineasRanking().resultado, Retorno.Resultado.OK, "Lista aerolÃƒÂ­neas por ranking.");
+        p.ver(s.listarAerolineasRanking().resultado, Retorno.Resultado.OK, "Lista aereolineas  por ranking.");
 
         
 
@@ -264,7 +278,9 @@ public static void prueba3(Prueba p, Sistema s, int [][]mapa){
 
         System.out.println("NUEVO RANKING DE AEROLINEAS");
 
-        p.ver(s.listarAerolineasRanking().resultado, Retorno.Resultado.OK,"Lista aerolÃƒÂ­neas por ranking.");
+        
+        
+        p.ver(s.listarAerolineasRanking().resultado, Retorno.Resultado.OK,"Lista aereolineas por ranking.");
 
         // LISTA VUELOS DE LA AEROLINEA LAN
 
@@ -280,6 +296,15 @@ public static void prueba3(Prueba p, Sistema s, int [][]mapa){
         p.ver(s.ingresarComentario("LAN", 702, "Comentario de Prueba", 5).resultado, Retorno.Resultado.OK,"Se ingresa un comentario al Vuelo LAN 702.");
         p.ver(s.ingresarComentario("LAN", 702, "Comentario de Prueba", 5).resultado, Retorno.Resultado.OK, "Se ingresa un comentario al Vuelo LAN 702.");
         p.ver(s.listarVuelosAerolinea("LAN").resultado, Retorno.Resultado.OK, "Lista vuelos de LAN.");        
+       
+        // Listados de espera por aerolinea y vuelo
+        
+         System.out.println("LISTADOS DE ESPERA POR VUELO Y AEREOLINEA");
+         p.ver(s.listarEspera(702, "LAN").resultado, Retorno.Resultado.ERROR_1,s.listarEspera(702, "LAN").valorString);
+         
+
+
+
         // MUESTRA MATRIZ DE DISTANCIAS
 
         System.out.println("MATRIZ DE DISTANCIAS");

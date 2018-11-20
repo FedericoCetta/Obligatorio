@@ -256,7 +256,7 @@ public class Sistema implements ISistema {
                        
                         while (auxServ!=null)
                         {
-                         R=R+"Servicios de la Aerolinea " + auxServ.getNumeroVuelo()+ " Para el Vuelo " + auxServ.getServicio()+ '\n';
+                         R=R+"[ Servicios de " + auxServ.getAerolinea()+ ", Para el Vuelo: "+ auxServ.getNumeroVuelo() + " Servicio: "+auxServ.getServicio()+ "]"+'\n';
                          auxServ=auxServ.getSiguiente();
                         }
                         
@@ -278,7 +278,10 @@ public class Sistema implements ISistema {
     @Override
     public Retorno listarVuelosAerolinea(String aerolinea) {
      NodoListaAereolinea auxAerolinea = listaAereolinea.obtenerAereolinea(aerolinea);    
-    
+    String R="";
+     Retorno ret;
+        if(auxAerolinea !=null){
+        
         if (auxAerolinea.getNombreAereolinea().toString()==aerolinea)
         {
             NodoListaVuelos auxVuelo=  auxAerolinea.LVuelosAereolinea.getInicio();
@@ -286,22 +289,36 @@ public class Sistema implements ISistema {
             if (auxVuelo!=null) 
             {
             
-                 System.out.println("Vuelos de la Aerolinea " + auxAerolinea.getNombreAereolinea());
+                 R+="[  Vuelos de la Aerolinea " + aerolinea;
                  while (auxVuelo!=null)
                         {
-                      
-                         System.out.println("Ciudad Origen: " + auxVuelo.getCiudadOrigen());
-                         System.out.println("Vuelo " + auxVuelo.getnVuelo()+ " Ciudad Destino " + auxVuelo.getCiudadDestino() + " Estrellas: " + auxVuelo.getEstrellas() + " Ranking:  " );
+                          R+=" Vuelo: " + auxVuelo.getnVuelo()+" Ciudad Origen: " + auxVuelo.getCiudadOrigen()+ " Ciudad Destino: " + auxVuelo.getCiudadDestino() +
+                             " Estrellas: " + auxVuelo.getEstrellas() + " Ranking: FALTA EL RANKINK ]"+'\n';
+                       
                          auxVuelo=auxVuelo.getSiguiente();
                         }
                  
-                   return new Retorno(Resultado.OK);
-                
+                   
+                    ret=new Retorno(Resultado.OK);
+                   ret.valorString=R;
+                   return ret;
             }
-                       
-                    
+           else
+                 R="No hay vuelos registrados para la aereolinea "+ aerolinea;
+                  ret=new Retorno(Resultado.ERROR_1);
+                  ret.valorString=R;
+                   return ret;
+           
+         
+            }
+        
         }
-        return new Retorno(Resultado.ERROR_1);  
+       else
+                R="No existe la aereolinea "+ aerolinea;
+                  ret=new Retorno(Resultado.ERROR_1);
+                  ret.valorString=R;
+                   return ret;
+        
     }
 
 
@@ -326,7 +343,7 @@ public class Sistema implements ISistema {
                        while (auxComentarios!=null)
                         {
                       
-                            R=R+"Comentario: " + auxComentarios.getComentario()+"Ranking " + auxComentarios.getRanking();
+                            R=R+" [Comentario: " + auxComentarios.getComentario()+" ,Ranking: " + auxComentarios.getRanking()+"]"+'\n';
                            auxComentarios=auxComentarios.getSiguiente();
                         }
                       
@@ -364,7 +381,7 @@ public class Sistema implements ISistema {
                        while (auxColaEspera!=null)
                         {
                       
-                            R=R+"Cliente: " + auxColaEspera.getCliente()+"Aereolinea " + auxColaEspera.getAereolinea()+"Numero Vuelo " + auxColaEspera.getnVuelo();
+                            R=R+"[ Cliente: " + auxColaEspera.getCliente()+", Aereolinea " + auxColaEspera.getAereolinea()+",  Numero Vuelo " + auxColaEspera.getnVuelo()+ " ]"+'\n';
                            auxColaEspera=auxColaEspera.getSiguiente();
                         }
                       
@@ -375,8 +392,11 @@ public class Sistema implements ISistema {
                 
                 }
                  else
-                    
-                 return new Retorno(Resultado.ERROR_1);
+                   R="No existen reservas pendientes para el numero de vuelo"+numero+" de la aereolinea" + aerolinea; 
+                  Retorno ret=new Retorno(Resultado.ERROR_1);
+                   ret.valorString=R;
+                   return ret;
+              
                    
                    
             }
@@ -412,7 +432,7 @@ public class Sistema implements ISistema {
         }
         
         String R = "El camino mas corto es : "+Integer.toString(ciudadOrigen) + "- "+ Integer.toString(escala) +"- " + Integer.toString(ciudadDestino);
-        Retorno ret=new Retorno(Resultado.NO_IMPLEMENTADA);
+        Retorno ret=new Retorno(Resultado.OK);
         ret.valorString=R;
         
         return  ret;
