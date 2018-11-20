@@ -376,7 +376,7 @@ public class Sistema implements ISistema {
             if (auxVuelo.getnVuelo() == numero) 
             {
                  NodoColaEspera auxColaEspera = auxVuelo.LEspera.getFront();
-                 
+        //hjhjhj         
                 if(auxColaEspera  != null){
                        while (auxColaEspera!=null)
                         {
