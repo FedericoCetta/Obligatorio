@@ -21,6 +21,16 @@ public class NodoListaVuelos {
         int capacidad;
         String FechayHoraSalida;
         int duracion;
+        
+        int cupo=1;
+
+        public int getCupo() {
+        return cupo;
+    }
+
+    public void setCupo(int cupo) {
+        this.cupo += cupo;
+    }
 	private NodoListaVuelos siguiente;
         
        // Listas que contiene cada vuelo

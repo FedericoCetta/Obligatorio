@@ -154,24 +154,38 @@ public class Sistema implements ISistema {
              return new Retorno(Resultado.ERROR_2);
     }
 
-    @Override
+     @Override
     public Retorno realizarReserva(int cliente, int numero, String aerolinea) {
         NodoListaAereolinea auxAerolinea = listaAereolinea.obtenerAereolinea(aerolinea);
+        
         
             if (auxAerolinea.getNombreAereolinea()== aerolinea)
             {
                 NodoListaVuelos auxVuelo = auxAerolinea.LVuelosAereolinea.obtenerVuelo(numero);
+                int cupos =  auxVuelo.getCupo();
                 if (auxVuelo!=null)
                 {
-                    if (auxVuelo.getCapacidad()>0) {
+                    if (auxVuelo.LReservas.esVacia()) {
+                          auxVuelo.LReservas.InsertarInicio(cliente, numero, aerolinea);
+                          
                         
-                        auxVuelo.LReservas.InsertarInicio(cliente, numero, aerolinea);
                         return new Retorno(Resultado.OK);
                     }
                     else
                     {
-                       auxVuelo.LEspera.encolar(cliente, numero, aerolinea);
-                        return new Retorno(Resultado.OK);
+                                                                          
+                        if (cupos<auxVuelo.getCapacidad() ) {
+
+                            auxVuelo.LReservas.InsertarInicio(cliente, numero, aerolinea);
+                            auxVuelo.setCupo(1);
+                            return new Retorno(Resultado.OK);
+                        }
+                        else
+                        {
+                           auxVuelo.LEspera.encolar(cliente, numero, aerolinea);
+                            return new Retorno(Resultado.OK);
+                        }
+                    
                     }
                 }
                 else
@@ -186,18 +200,27 @@ public class Sistema implements ISistema {
         
          NodoListaAereolinea auxAerolinea = listaAereolinea.obtenerAereolinea(aerolinea);
          
-         if (listaAereolinea.existeAerolina(aerolinea)) 
+         if (auxAerolinea.getNombreAereolinea().toString()== aerolinea) 
          {
               NodoListaVuelos auxVuelo = auxAerolinea.LVuelosAereolinea.obtenerVuelo(numero);
              
              if (auxVuelo!=null) 
              {
                  if (auxVuelo.LReservas.obtenerReserva(numero, cliente) != null) {
-                    NodoColaEspera usuarioencola = auxVuelo.LEspera.getBack();
+                     if (!auxVuelo.LEspera.esVacia())
+                     {
+                     NodoColaEspera usuarioencola = auxVuelo.LEspera.getFront();
                      auxVuelo.LEspera.desencolar();
                      auxVuelo.LReservas.borrarFin();
                      auxVuelo.LReservas.InsertarInicio(usuarioencola.cliente, usuarioencola.nVuelo, usuarioencola.aereolinea);
+                     
                      return new Retorno(Resultado.OK);
+                     }
+                     else
+                     {
+                     auxVuelo.setCupo(-1);
+                     }
+                
                   
                  }
                  else
@@ -211,6 +234,7 @@ public class Sistema implements ISistema {
           return new Retorno(Resultado.ERROR_1);
         
     }
+    
     
     //prueba commit
 
