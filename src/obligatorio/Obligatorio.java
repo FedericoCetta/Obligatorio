@@ -66,7 +66,8 @@ public static void prueba0(Prueba p, Sistema s, int [][] mapa) {
   // p.ver(s.listarAerolineasRanking().resultado, Retorno.Resultado.OK, "Listado de ranking ");
    
   
-   p.ver(s.ingresarComentario("AA", 1, " regular", 3).resultado, Retorno.Resultado.OK, "Vuelo 2 de AA califacion 3");
+   p.ver(s.ingresarComentario("AA", 1, " regular", 3).resultado, Retorno.Resultado.OK, "Vuelo 1 de AA califacion 3");
+    p.ver(s.ingresarComentario("AA", 1, " buen servicio", 4).resultado, Retorno.Resultado.OK, "Vuelo 1 de AA califacion 4");
    p.ver(s.ingresarComentario("AA", 2, " bien", 2).resultado, Retorno.Resultado.ERROR_2, "No existe Vuelo 2 de AA ");
    p.ver(s.ingresarComentario("AA", 1, " bien", 8).resultado, Retorno.Resultado.ERROR_1, "Vuelo 1 de AA califacion 8 fuera de rango");
    
