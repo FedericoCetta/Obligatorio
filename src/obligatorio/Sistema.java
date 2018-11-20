@@ -293,7 +293,7 @@ public class Sistema implements ISistema {
         if (auxAerolinea.getNombreAereolinea().toString()==aerolinea)
         {
             NodoListaVuelos auxVuelo=  auxAerolinea.LVuelosAereolinea.obtenerVuelo(numero);
-            
+             String R="";
             if (auxVuelo.getnVuelo() == numero) 
             {
                  NodoListaComentarios auxComentarios = auxVuelo.LComentarios.obtenerComentario(numero);
@@ -302,12 +302,13 @@ public class Sistema implements ISistema {
                        while (auxComentarios!=null)
                         {
                       
-                         System.out.println("Comentario: " + auxComentarios.getComentario()+"Ranking " + auxComentarios.getRanking() );
-                auxComentarios=auxComentarios.getSiguiente();
+                            R=R+"Comentario: " + auxComentarios.getComentario()+"Ranking " + auxComentarios.getRanking();
+                           auxComentarios=auxComentarios.getSiguiente();
                         }
-                       
-                       
-                   return new Retorno(Resultado.OK);
+                      
+                   Retorno ret=new Retorno(Resultado.OK);
+                   ret.valorString=R;
+                   return ret;
                 
                 
                 }
@@ -325,7 +326,41 @@ public class Sistema implements ISistema {
 
     @Override
     public Retorno listarEspera(int numero, String aerolinea) {
-        return new Retorno(Resultado.NO_IMPLEMENTADA);
+   NodoListaAereolinea auxAerolinea = listaAereolinea.obtenerAereolinea(aerolinea);    
+    
+        if (auxAerolinea.getNombreAereolinea().toString()==aerolinea)
+        {
+            NodoListaVuelos auxVuelo=  auxAerolinea.LVuelosAereolinea.obtenerVuelo(numero);
+             String R="";
+            if (auxVuelo.getnVuelo() == numero) 
+            {
+                 NodoColaEspera auxColaEspera = auxVuelo.LEspera.getFront();
+                 
+                if(auxColaEspera  != null){
+                       while (auxColaEspera!=null)
+                        {
+                      
+                            R=R+"Cliente: " + auxColaEspera.getCliente()+"Aereolinea " + auxColaEspera.getAereolinea()+"Numero Vuelo " + auxColaEspera.getnVuelo();
+                           auxColaEspera=auxColaEspera.getSiguiente();
+                        }
+                      
+                   Retorno ret=new Retorno(Resultado.OK);
+                   ret.valorString=R;
+                   return ret;
+                
+                
+                }
+                 else
+                    
+                 return new Retorno(Resultado.ERROR_1);
+                   
+                   
+            }
+                       
+                    
+        }
+        return new Retorno(Resultado.ERROR_1);   
+
     }
 
     @Override
