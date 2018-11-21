@@ -80,6 +80,9 @@ public static void prueba0(Prueba p, Sistema s, int [][] mapa) {
  //p.ver(s.listarComentarios(1,"AA").resultado, Retorno.Resultado.OK,s.listarComentarios(1,"AA").valorString);
  
    p.ver(s.destruirSistemaReservas().resultado, Retorno.Resultado.OK, "Se destruye sistema de reservas");
+   
+   
+   
     p.imprimirResultadosPrueba();
 }
  //ss

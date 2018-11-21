@@ -381,7 +381,7 @@ public class Sistema implements ISistema {
                        while (auxColaEspera!=null)
                         {
                       
-                            R=R+"[ Cliente: " + auxColaEspera.getCliente()+", Aereolinea " + auxColaEspera.getAereolinea()+",  Numero Vuelo " + auxColaEspera.getnVuelo()+ " ]"+'\n';
+                            R=R+" Cliente: " + auxColaEspera.getCliente()+", Aereolinea " + auxColaEspera.getAereolinea()+",  Numero Vuelo " + auxColaEspera.getnVuelo()+ " ]"+'\n';
                            auxColaEspera=auxColaEspera.getSiguiente();
                         }
                       
