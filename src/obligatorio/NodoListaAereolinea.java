@@ -11,17 +11,44 @@ package obligatorio;
  */
 public class NodoListaAereolinea {
         String NombreAereolinea;
-        int Ranking;
+        int Ranking;// el promedio es el ranking
+        
+        
+        int cantidadEstrellas;
+        int cantidadComentarios;
+    
+       
+        
+        
 	private NodoListaAereolinea siguiente;
         
        // Listas que contiene cada aereolinea
         ListaVuelos LVuelosAereolinea;
-
+        
     public NodoListaAereolinea(String NombreAereolinea) {
         this.NombreAereolinea = NombreAereolinea;
         this.Ranking = 0;
+        this.cantidadComentarios = 0;
+        this.cantidadEstrellas = 0;
         this.siguiente = null;
         this.LVuelosAereolinea = new ListaVuelos();
+    
+    }
+
+    public int getCantidadEstrellas() {
+        return cantidadEstrellas;
+    }
+
+    public void setCantidadEstrellas(int cantidadEstrellas) {
+        this.cantidadEstrellas = cantidadEstrellas;
+    }
+
+    public int getCantidadComentarios() {
+        return cantidadComentarios;
+    }
+
+    public void setCantidadComentarios(int cantidadComentarios) {
+        this.cantidadComentarios = cantidadComentarios;
     }
 
     public String getNombreAereolinea() {

@@ -164,19 +164,7 @@ public static void prueba3(Prueba p, Sistema s, int [][]mapa){
    
         
         
-        // LISTADO DE VUELOS DE LA AEROLINEAS 
-
-        System.out.println("LISTADO DE VUELOS AEROLINEAS ");
-
-        System.out.println("_______________________________");
-         p.ver(s.listarVuelosAerolinea("LAN").resultado, Retorno.Resultado.OK,s.listarVuelosAerolinea("LAN").valorString);
-         p.ver(s.listarVuelosAerolinea("AA").resultado, Retorno.Resultado.OK,s.listarVuelosAerolinea("AA").valorString);
-         p.ver(s.listarVuelosAerolinea("CopaAir").resultado, Retorno.Resultado.OK,s.listarVuelosAerolinea("CopaAir").valorString);
-
-          // AEREOLINEA INEXISTENTE
-          p.ver(s.listarVuelosAerolinea("AAA").resultado, Retorno.Resultado.ERROR_1,s.listarVuelosAerolinea("AAA").valorString);
-
-        
+       
 
          // INGRESO DE SERVICIOS AL VUELO 701 DE LAN
 
@@ -318,7 +306,37 @@ public static void prueba3(Prueba p, Sistema s, int [][]mapa){
         //MUESTRA camino mas corto.
         System.out.println("CAMINO MAS CORTO");
         p.ver(s.Caminomascorto(0, 4, mapa).resultado, Retorno.Resultado.OK, "Camino mas corto");
+        
+        
+        
+         // LISTADO DE VUELOS DE LA AEROLINEAS 
+
+        System.out.println("LISTADO DE VUELOS AEROLINEAS ");
+
+        System.out.println("_______________________________");
+         p.ver(s.listarVuelosAerolinea("LAN").resultado, Retorno.Resultado.OK,s.listarVuelosAerolinea("LAN").valorString);
+         p.ver(s.listarVuelosAerolinea("AA").resultado, Retorno.Resultado.OK,s.listarVuelosAerolinea("AA").valorString);
+         p.ver(s.listarVuelosAerolinea("CopaAir").resultado, Retorno.Resultado.OK,s.listarVuelosAerolinea("CopaAir").valorString);
+
+          // AEREOLINEA INEXISTENTE
+          p.ver(s.listarVuelosAerolinea("AAA").resultado, Retorno.Resultado.ERROR_1,s.listarVuelosAerolinea("AAA").valorString);
+
+        
+        
+        
+        
+        
+        
+        
+        
         p.imprimirResultadosPrueba();
+        
+        
+        
+        
+        
+        
+        
     }
 
 

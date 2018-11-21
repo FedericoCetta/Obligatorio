@@ -140,6 +140,7 @@ public class Sistema implements ISistema {
                     
                     if (ranking >0 && ranking <=5 ) {
                          auxVuelo.LComentarios.agregarInicio(aerolinea, numero, comentario, ranking);
+                         ActualizarRanking(auxAerolinea, ranking);
                          return new Retorno(Resultado.OK);
                     }
                     else {
@@ -284,6 +285,7 @@ public class Sistema implements ISistema {
         
         if (auxAerolinea.getNombreAereolinea().toString()==aerolinea)
         {
+            int rank = auxAerolinea.getRanking();
             NodoListaVuelos auxVuelo=  auxAerolinea.LVuelosAereolinea.getInicio();
             
             if (auxVuelo!=null) 
@@ -293,7 +295,7 @@ public class Sistema implements ISistema {
                  while (auxVuelo!=null)
                         {
                           R+=" Vuelo: " + auxVuelo.getnVuelo()+" Ciudad Origen: " + auxVuelo.getCiudadOrigen()+ " Ciudad Destino: " + auxVuelo.getCiudadDestino() +
-                             " Estrellas: " + auxVuelo.getEstrellas() + " Ranking: FALTA EL RANKINK ]"+'\n';
+                             " Estrellas: " + auxVuelo.getEstrellas() + " Ranking: "+rank +" ]"+'\n';
                        
                          auxVuelo=auxVuelo.getSiguiente();
                         }
@@ -437,5 +439,9 @@ public class Sistema implements ISistema {
         
         return  ret;
     }
-    
+    public void ActualizarRanking(NodoListaAereolinea aereolinea, int ranking){
+            aereolinea.setCantidadComentarios(aereolinea.getCantidadComentarios()+1);
+            aereolinea.setCantidadEstrellas(aereolinea.getCantidadEstrellas() + ranking);
+            aereolinea.setRanking(aereolinea.getCantidadEstrellas() / aereolinea.getCantidadComentarios());
+    }
 }
