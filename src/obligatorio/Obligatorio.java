@@ -254,9 +254,9 @@ public static void prueba3(Prueba p, Sistema s, int [][]mapa){
 
         // LISTA RANKING
 
-        System.out.println("RANKING DE AEROLINEAS");
+        //System.out.println("RANKING DE AEROLINEAS");
 
-        p.ver(s.listarAerolineasRanking().resultado, Retorno.Resultado.OK, "Lista aereolineas  por ranking.");
+       // p.ver(s.listarAerolineasRanking().resultado, Retorno.Resultado.OK, "Lista aereolineas  por ranking.");
 
         
 
@@ -269,12 +269,7 @@ public static void prueba3(Prueba p, Sistema s, int [][]mapa){
 
         // LISTA RANKING NUEVAMENTE PARA VER CAMBIO
 
-        System.out.println("NUEVO RANKING DE AEROLINEAS");
-
-        
-        
-        p.ver(s.listarAerolineasRanking().resultado, Retorno.Resultado.OK,"Lista aereolineas por ranking.");
-
+       
         // LISTA VUELOS DE LA AEROLINEA LAN
 
         System.out.println("VUELOS DE AEROLINEA LAN");
@@ -321,9 +316,11 @@ public static void prueba3(Prueba p, Sistema s, int [][]mapa){
           // AEREOLINEA INEXISTENTE
           p.ver(s.listarVuelosAerolinea("AAA").resultado, Retorno.Resultado.ERROR_1,s.listarVuelosAerolinea("AAA").valorString);
 
+          
+          
+         System.out.println("LISTADO DE  AEROLINEAS POR RANKING ");
         
-        
-        
+          p.ver(s.listarAerolineasRanking().resultado, Retorno.Resultado.OK,s.listarAerolineasRanking().valorString);
         
         
         

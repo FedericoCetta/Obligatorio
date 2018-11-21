@@ -326,7 +326,24 @@ public class Sistema implements ISistema {
 
     @Override
     public Retorno listarAerolineasRanking() {
-        return new Retorno(Resultado.NO_IMPLEMENTADA);
+          NodoListaAereolinea aux = listaAereolinea.getInicio();
+          String R=""; 
+              if(aux !=null){
+                  //ListaAereolinea a = new ListaAereolinea();
+                 // a.OrdenarListaPorRanking();
+                        while (aux!=null)
+                        {
+                         R=R+"[ Aereolinea " + aux.getNombreAereolinea()+ ", Ranking: "+ aux.getRanking() + " ";
+                         aux=aux.getSiguiente();
+                        }
+                      Retorno  ret = new Retorno(Resultado.OK);
+                         ret.valorString=R;
+                        return ret;
+                     }
+                    else
+                            return new Retorno(Resultado.ERROR_1);
+                      
+                        
     }
 
     @Override

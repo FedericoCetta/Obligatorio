@@ -154,6 +154,27 @@ public class ListaAereolinea implements IListaAereolinea {
           return existe;
 
     }   
-     
+    public void OrdenarListaPorRanking(){
+    
+        NodoListaAereolinea aux,aux2,temp;
+        
+        aux = this.getInicio();
+        
+        while(aux.getSiguiente() != null){
+        
+            aux2 = aux.getSiguiente();
+            
+            while(aux2 != null){
+                    if(aux2.getRanking() < aux.getRanking()){
+                        temp = aux;
+                        aux = aux2;
+                        aux2 = temp;
+                    }
+                aux2 = aux2.getSiguiente();
+            }
+            aux = aux.getSiguiente();
+        }
+                
+    }
     
 }
