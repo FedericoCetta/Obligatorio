@@ -326,11 +326,11 @@ public class Sistema implements ISistema {
 
     @Override
     public Retorno listarAerolineasRanking() {
-          NodoListaAereolinea aux = listaAereolinea.getInicio();
+          NodoListaAereolinea aux1 = listaAereolinea.getInicio();
           String R=""; 
-              if(aux !=null){
-                  //ListaAereolinea a = new ListaAereolinea();
-                 // a.OrdenarListaPorRanking();
+              if(aux1 !=null){
+            listaAereolinea.OrdenarListaPorRanking(aux1);
+                 NodoListaAereolinea aux = listaAereolinea.getInicio();
                         while (aux!=null)
                         {
                          R=R+"[ Aereolinea " + aux.getNombreAereolinea()+ ", Ranking: "+ aux.getRanking() + " ";
@@ -395,7 +395,7 @@ public class Sistema implements ISistema {
             if (auxVuelo.getnVuelo() == numero) 
             {
                  NodoColaEspera auxColaEspera = auxVuelo.LEspera.getFront();
-        //hjhjhj         
+                 
                 if(auxColaEspera  != null){
                        while (auxColaEspera!=null)
                         {
