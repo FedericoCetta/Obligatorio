@@ -119,7 +119,7 @@ public static void prueba3(Prueba p, Sistema s, int [][]mapa){
      s.registarAereolinea("Avianca");
      s.registarAereolinea("AA");
 
-
+//
         // REGISTRO DE VUELOS DE LA AEROLINEA AA
 
         System.out.println("se registran los vuelos 102 103 104 de AA");
