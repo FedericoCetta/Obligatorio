@@ -459,6 +459,21 @@ public class Sistema implements ISistema {
     public void ActualizarRanking(NodoListaAereolinea aereolinea, int ranking){
             aereolinea.setCantidadComentarios(aereolinea.getCantidadComentarios()+1);
             aereolinea.setCantidadEstrellas(aereolinea.getCantidadEstrellas() + ranking);
+            
+            // setea ranking en aerolinea
             aereolinea.setRanking(aereolinea.getCantidadEstrellas() / aereolinea.getCantidadComentarios());
+            
+            // me quedo con el puntero
+            
+            NodoListaAereolinea nodoNuevo = aereolinea;
+            
+                       
+            //borro nodo
+            String nom = aereolinea.getNombreAereolinea().toString();
+            listaAereolinea.borrarelemento(nom);
+            //agrego ordenado
+            
+            // String Aereolinea, int ranking, int cantidadestrellas, int cantidadcomentarios, ListaVuelos listadevuelos) {
+            listaAereolinea.agregarOrd(nodoNuevo.getNombreAereolinea(), nodoNuevo.getRanking(), nodoNuevo.getCantidadEstrellas(), nodoNuevo.getCantidadComentarios(), nodoNuevo.LVuelosAereolinea);
     }
 }

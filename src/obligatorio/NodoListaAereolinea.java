@@ -11,7 +11,21 @@ package obligatorio;
  */
 public class NodoListaAereolinea {
         String NombreAereolinea;
-        int Ranking;// el promedio es el ranking
+        int Ranking = 0;// el promedio es el ranking
+        private Object dato;
+
+    public NodoListaAereolinea(Object dato) {
+        this.dato = dato;
+         this.siguiente = null;
+    }
+
+    public Object getDato() {
+        return dato;
+    }
+
+    public void setDato(Object dato) {
+        this.dato = dato;
+    }
         
         
         int cantidadEstrellas;
@@ -21,6 +35,7 @@ public class NodoListaAereolinea {
         
         
 	private NodoListaAereolinea siguiente;
+        private NodoListaAereolinea anterior;
         
        // Listas que contiene cada aereolinea
         ListaVuelos LVuelosAereolinea;
@@ -31,8 +46,38 @@ public class NodoListaAereolinea {
         this.cantidadComentarios = 0;
         this.cantidadEstrellas = 0;
         this.siguiente = null;
+        this.anterior = null;
         this.LVuelosAereolinea = new ListaVuelos();
     
+    }
+    
+     public NodoListaAereolinea(String NombreAereolinea,int Ranking) {
+        this.NombreAereolinea = NombreAereolinea;
+        this.Ranking = 0;
+        this.cantidadComentarios = 0;
+        this.cantidadEstrellas = 0;
+        this.siguiente = null;
+        this.anterior = null;
+        this.LVuelosAereolinea = new ListaVuelos();
+    
+    }
+
+    public NodoListaAereolinea(String NombreAereolinea, int cantidadEstrellas, int cantidadComentarios, ListaVuelos LVuelosAereolinea) {
+        this.NombreAereolinea = NombreAereolinea;
+        this.cantidadEstrellas = cantidadEstrellas;
+        this.cantidadComentarios = cantidadComentarios;
+        this.siguiente = siguiente;
+        this.anterior = anterior;
+        this.LVuelosAereolinea = LVuelosAereolinea;
+    }
+
+
+    public NodoListaAereolinea getAnterior() {
+        return anterior;
+    }
+
+    public void setAnterior(NodoListaAereolinea anterior) {
+        this.anterior = anterior;
     }
 
     public int getCantidadEstrellas() {

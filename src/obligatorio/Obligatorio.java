@@ -266,6 +266,11 @@ public static void prueba3(Prueba p, Sistema s, int [][]mapa){
         p.ver(s.ingresarComentario("AA", 102, "Comentario de Prueba", 1).resultado, Retorno.Resultado.OK, "Se ingresa un comentario al Vuelo LAN 702.");
         p.ver(s.ingresarComentario("LAN", 701, "Comentario de Prueba", 5).resultado, Retorno.Resultado.OK,"Se ingresa un comentario al Vuelo LAN 701.");
         p.ver(s.ingresarComentario("LAN", 702, "Comentario de Prueba", 3).resultado, Retorno.Resultado.OK,"Se ingresa un comentario al Vuelo LAN 702.");
+        p.ver(s.ingresarComentario("CopaAir", 2584, "Comentario de Prueba", 1).resultado, Retorno.Resultado.OK,"Se ingresa un comentario al Vuelo CopaAir 2584.");
+        p.ver(s.ingresarComentario("CopaAir", 2784, "Comentario de Prueba", 5).resultado, Retorno.Resultado.OK,"Se ingresa un comentario al Vuelo CopaAir 2784.");
+        
+        
+        
 
         // LISTA RANKING NUEVAMENTE PARA VER CAMBIO
 
@@ -320,7 +325,7 @@ public static void prueba3(Prueba p, Sistema s, int [][]mapa){
           
          System.out.println("LISTADO DE  AEROLINEAS POR RANKING ");
         
-          p.ver(s.listarAerolineasRanking().resultado, Retorno.Resultado.OK,s.listarAerolineasRanking().valorString);
+         p.ver(s.listarAerolineasRanking().resultado, Retorno.Resultado.OK,s.listarAerolineasRanking().valorString);
         
         
         

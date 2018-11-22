@@ -107,25 +107,45 @@ public class ListaAereolinea implements IListaAereolinea {
     }
 
     @Override
-    public void agregarOrd(String Aereolinea) {
+    public void agregarOrd(String Aereolinea, int ranking, int cantidadestrellas, int cantidadcomentarios, ListaVuelos listadevuelos) {
               NodoListaAereolinea nuevo = new NodoListaAereolinea(Aereolinea);
+              nuevo.setRanking(ranking);
+              nuevo.setCantidadEstrellas(cantidadestrellas);
+              nuevo.setCantidadComentarios(cantidadcomentarios);
+              nuevo.setLVuelosAereolinea(listadevuelos);
+              
              NodoListaAereolinea aux = this.getInicio(); 
-          /*      
-        if(this.esVacia()|| nVuelo< this.getInicio().getnVuelo() ){
+             
+         
+                
+        if(this.esVacia()|| nuevo.getRanking()>= this.getInicio().getRanking()){
             
-           this.insertarInicio( nVuelo, aereolinea, ciudadOrigen, ciudadDestino,  estrellas,  capacidad,  FechayHoraSalida,  duracion);
+             this.insertarInicioNodo(nuevo);
+             if (nuevo.getSiguiente()== null) {
+                 nuevo.setSiguiente(this.fin);
+                
+            }
+             return;
             
-        }*/
-        /*
+                     }
+//        if (this.esVacia()|| nuevo.getRanking()<= this.fin.getRanking()) {
+//            
+//             this.agregarFinalNodo(nuevo);
+//             return;
+//            
+//        }
+        
         else  {
-                 while (aux.getSiguiente()!= null && aux.getSiguiente().getnVuelo() < nVuelo )
-                         aux=aux.getSiguiente();
-                         nuevo.setSiguiente(aux.getSiguiente());
+                 while (aux.getSiguiente()!= null &&  nuevo.getRanking() < aux.getSiguiente().getRanking()) {
+                     
+                        aux=aux.getSiguiente();
+                        nuevo.setSiguiente(aux.getSiguiente());
                         aux.setSiguiente(nuevo);
-                 
+                  } 
             } 
-*/
+
     }
+
 
     @Override
     public NodoListaAereolinea obtenerAereolinea(String Aereolinea) {
@@ -164,7 +184,7 @@ public class ListaAereolinea implements IListaAereolinea {
         
             aux2 = aux.getSiguiente();
             
-            while(aux2 != null){
+            while(aux2.getSiguiente() != null){
                     if(aux2.getRanking() <= aux.getRanking()){
                         temp = aux;
                         aux = aux2;
@@ -178,5 +198,57 @@ public class ListaAereolinea implements IListaAereolinea {
         }
                 
     }
+
+    @Override
+    public void borrarelemento(String aerolinea) {
+             if (this.inicio != null) {
+                        NodoListaAereolinea aux = this.inicio;
+                NodoListaAereolinea ant = null;
+                while (aux != null) {
+                    if (aux.getNombreAereolinea()== aerolinea) {
+                        if (ant == null) {
+                            this.inicio = this.inicio.getSiguiente();
+                            aux.setSiguiente(null);
+                            aux = this.inicio;
+                        } else {
+                            ant.setSiguiente(aux.getSiguiente());
+                            aux.setSiguiente(null);
+                            aux = ant.getSiguiente();
+                        }
+                    } else {
+                        ant = aux;
+                        aux = aux.getSiguiente();
+                    }
+                }
+            
+        }
+      //  this.cantElementos = this.cantElementos - 1; 
+    }
+    
+    
+
+    @Override
+    public void insertarInicioNodo(NodoListaAereolinea Aereolinea) {
+       // NodoListaAereolinea nuevo= new NodoListaAereolinea(Aereolinea);
+        Aereolinea.setSiguiente(inicio);
+        this.inicio=Aereolinea;
+        if(this.fin==null)//estoy insertando el primer nodo
+            this.fin=Aereolinea;    }
+
+//    @Override
+//    public void agregarFinalNodo(NodoListaAereolinea Aereolinea) {
+//        if (this.esVacia())
+//            this.insertarInicioNodo(Aereolinea); // el agregar inicio suma 1 a cantelementos
+//        
+//        else
+//        {
+//          // NodoListaAereolinea nuevo= new NodoListaAereolinea(Aereolinea); 
+//           this.fin.setSiguiente(Aereolinea);
+//           this.fin =Aereolinea;
+//          
+//        }        }
+    
+    
+    
     
 }
